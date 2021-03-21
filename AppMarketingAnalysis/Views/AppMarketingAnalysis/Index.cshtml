@@ -1,0 +1,113 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AppMarketingAnalysis</h2>
+<hr />
+
+<div id="Btn_Table" class="btn-group" role="group" aria-label="Btn Table">
+    <button type="button" id="Btn_AppGrid" class="btn btn-info" value="AppGrid" onclick="SelectedTable(this); ">表格</button>
+    <button type="button" id="Btn_Chart1" class="btn btn-info" value="Chart1" onclick="SelectedTable(this); ">圖表一</button>
+    <button type="button" id="Btn_Chart2" class="btn btn-info" value="Chart2" onclick="SelectedTable(this); ">圖表二</button>
+    <button type="button" id="Btn_Chart3" class="btn btn-info" value="Chart3" onclick="SelectedTable(this); ">圖表三</button>
+    <button type="button" id="Btn_Chart4" class="btn btn-info" value="Chart4" onclick="SelectedTable(this); ">圖表四</button>
+</div>
+
+<div id="Div_Table">
+    <!--AppGrid-->
+    <div id="AppGrid" class="AppGrid" style="border: 1px black solid;">
+        <!--篩選條件-->
+        <div id="AppGrid_Selected" class="AppGrid">
+            <form action="/AppMarketingAnalysis/Index" method="post">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">APP名稱</label>
+                        <div class="col-md-10">
+                            <input id="AppName" class="AppGrid" type="text" value="" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">APP類別</label>
+                        <div class="col-md-10">
+                            <select id="Category" class="AppGrid"></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">下載數量範圍</label>
+                        <div class="col-md-10">
+                            <select id="InstallsRange" class="AppGrid"></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-12">
+                            <input type="button" id="Search" class="btn btn-info AppGrid" value="查詢" />
+                            <input type="button" class="btn btn-info AppGrid" value="清除" onclick="location.href = '/AppMarketingAnalysis/Index'" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!--圖表區-->
+        <div id="AppGrid_Chart" class="AppGrid">
+        </div>
+    </div>
+
+    <!--Chart1-->
+    <div id="Chart1" class="Chart1" style="border: 1px black solid;">
+        <!--篩選條件-->
+        <div id="Chart1_Selected" class="Chart1">
+        </div>
+        <!--圖表區-->
+        <div id="Chart1_Chart" class="Chart1">
+            aaa
+        </div>
+    </div>
+
+    <!--Chart2-->
+    <div id="Chart2" class="Chart2" style="border: 1px black solid;">
+        <!--篩選條件-->
+        <div id="Chart2_Selected" class="Chart2">
+        </div>
+        <!--圖表區-->
+        <div id="Chart2_Chart" class="Chart2">
+            bbb
+        </div>
+    </div>
+
+    <!--Chart3-->
+    <div id="Chart3" class="Chart3" style="border: 1px black solid;">
+        <!--篩選條件-->
+        <div id="Chart3_Selected" class="Chart3">
+        </div>
+        <!--圖表區-->
+        <div id="Chart3_Chart" class="Chart3">
+            ccc
+        </div>
+    </div>
+
+    <!--Chart4-->
+    <div id="Chart4" class="Chart4" style="border: 1px black solid;">
+        <!--篩選條件-->
+        <div id="Chart4_Selected" class="Chart4">
+        </div>
+        <!--圖表區-->
+        <div id="Chart4_Chart" class="Chart4">
+            ddd
+        </div>
+    </div>
+
+    <!--<div id="NotFind" style="color:red;text-align:center;">查無資料</div>-->
+    <!--<div id="NotSearchYet" style="color:red;text-align:center;">尚未查詢資料</div>-->
+</div>
+
+<div>
+    <a href="/AppMarketingAnalysis/Index">回首頁</a>
+</div>
+
+<script src="~/Scripts/Index.js"></script>

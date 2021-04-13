@@ -7,99 +7,190 @@
 <hr />
 
 <div id="Btn_Table" class="btn-group" role="group" aria-label="Btn Table">
-    <button type="button" id="Btn_AppGrid" class="btn btn-info" value="AppGrid" onclick="SelectedTable(this); ">表格</button>
-    <button type="button" id="Btn_Chart1" class="btn btn-info" value="Chart1" onclick="SelectedTable(this); ">圖表一</button>
-    <button type="button" id="Btn_Chart2" class="btn btn-info" value="Chart2" onclick="SelectedTable(this); ">圖表二</button>
-    <button type="button" id="Btn_Chart3" class="btn btn-info" value="Chart3" onclick="SelectedTable(this); ">圖表三</button>
-    <button type="button" id="Btn_Chart4" class="btn btn-info" value="Chart4" onclick="SelectedTable(this); ">圖表四</button>
+    <button type="button" id="Btn_AppGrid" class="btn bb" value="AppGrid" onclick="SelectedTable(this); ">表格</button>
+    <button type="button" id="Btn_Chart1" class="btn bb" value="Chart1" onclick="SelectedTable(this); ">圖表一</button>
+    <button type="button" id="Btn_Chart2" class="btn bb" value="Chart2" onclick="SelectedTable(this); ">圖表二</button>
+    <button type="button" id="Btn_Chart3" class="btn bb" value="Chart3" onclick="SelectedTable(this); ">圖表三</button>
+    <button type="button" id="Btn_Chart4" class="btn bb" value="Chart4" onclick="SelectedTable(this); ">圖表四</button>
+    <button type="button" id="Btn_Chart5" class="btn bb" value="Chart5" onclick="SelectedTable(this); ">圖表五</button>
 </div>
 
-<div id="Div_Table">
-    <!--AppGrid-->
-    <div id="AppGrid" class="AppGrid" style="border: 1px black solid;">
-        <!--篩選條件-->
-        <div id="AppGrid_Selected" class="AppGrid">
-            <form action="/AppMarketingAnalysis/Index" method="post">
-                <div class="form-horizontal">
-                    <div class="form-group">
-                        <label class="control-label col-md-2">APP名稱</label>
-                        <div class="col-md-10">
-                            <input id="AppName" class="AppGrid" type="text" value="" />
-                        </div>
-                    </div>
+<div id="Div_Table" style="border: 1px black solid;">
+    <div id="SelectedOption" style="background-color:antiquewhite;height:30px;">
+        <button type="button" id="Btn_SelectedOption" class="btn btn-info btn-sm" style="width:100%;">
+            <div style="text-align: center;display:inline;">篩選條件</div>
+            <div id="Btn_SelectedOptionIcon" style="display:inline;">&#9660;</div>
+        </button>
+    </div>
 
-                    <div class="form-group">
-                        <label class="control-label col-md-2">APP類別</label>
-                        <div class="col-md-10">
-                            <select id="Category" class="AppGrid"></select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-md-2">下載數量範圍</label>
-                        <div class="col-md-10">
-                            <select id="InstallsRange" class="AppGrid"></select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-2">
-                        </div>
-                        <div class="col-md-12">
-                            <input type="button" id="Search" class="btn btn-info AppGrid" value="查詢" />
-                            <input type="button" class="btn btn-info AppGrid" value="清除" onclick="location.href = '/AppMarketingAnalysis/Index'" />
-                        </div>
+    <!--篩選條件-->
+    <div id="Chart_Selected" class="Selected" style="margin-top:5px;">
+        <form action="/AppMarketingAnalysis/Index" method="post">
+            <div class="form-horizontal">
+                <div id="Div_AppName" class="form-group">
+                    <label class="control-label col-md-2">APP名稱</label>
+                    <div class="col-md-10">
+                        <input id="AppName" class="SelectedOption" type="text" value="" />
                     </div>
                 </div>
-            </form>
-        </div>
-        <!--圖表區-->
-        <div id="AppGrid_Chart" class="AppGrid">
-        </div>
+
+                <div id="Div_Category" class="form-group">
+                    <label class="control-label col-md-2">APP類別</label>
+                    <div class="col-md-10">
+                        <select id="Category" class="SelectedOption"></select>
+                    </div>
+                </div>
+
+                <div id="Div_Rating" class="form-group">
+                    <label class="control-label col-md-2">平均評分</label>
+                    <div class="col-md-10">
+                        <select id="Rating" class="SelectedOption"></select>
+                    </div>
+                </div>
+
+                <div id="Div_RatingCount" class="form-group">
+                    <label class="control-label col-md-2">評分數量</label>
+                    <div class="col-md-10">
+                        <select id="RatingCount" class="SelectedOption"></select>
+                    </div>
+                </div>
+
+                <div id="Div_InstallsRange" class="form-group">
+                    <label class="control-label col-md-2">下載數量範圍</label>
+                    <div class="col-md-10">
+                        <select id="InstallsRange" class="SelectedOption"></select>
+                    </div>
+                </div>
+
+                <div id="Div_InstallsCount" class="form-group">
+                    <label class="control-label col-md-2">下載數量</label>
+                    <div class="col-md-10">
+                        <select id="InstallsCount" class="SelectedOption"></select>
+                    </div>
+                </div>
+
+                <div id="Div_Free" class="form-group">
+                    <label for="Free" class="control-label col-md-2">APP是免費還是付費</label>
+                    <div class="col-md-10">
+                        <ul id="Free" class="SelectedOption"></ul>
+                    </div>
+                </div>
+
+                <div id="Div_Price" class="form-group">
+                    <label class="control-label col-md-2">APP價格</label>
+                    <div class="col-md-10">
+                        <input id="MinPrice" class="SelectedOption" type="number" title="currency" value="0" />
+                        <input id="MaxPrice" class="SelectedOption" type="number" title="currency" value="0" />
+                    </div>
+                </div>
+
+                <div id="Div_Size" class="form-group">
+                    <label class="control-label col-md-2">APP檔案大小</label>
+                    <div class="col-md-10">
+                        <input id="MinSize" class="SelectedOption" type="number" title="numeric" value="0" />
+                        <select id="MinSizeUnit" class="SelectedOption SizeUnit"></select>
+                        ~
+                        <input id="MaxSize" class="SelectedOption" type="number" title="numeric" value="0" />
+                        <select id="MaxSizeUnit" class="SelectedOption SizeUnit"></select>
+                    </div>
+                </div>
+
+                <div id="Div_MinAndroid" class="form-group">
+                    <label class="control-label col-md-2">最小支援安卓版本</label>
+                    <div class="col-md-10">
+                        <select id="MinAndroid" class="SelectedOption"></select>
+                    </div>
+                </div>
+
+                <div id="Div_DeveloperId" class="form-group">
+                    <label class="control-label col-md-2">開發者名稱</label>
+                    <div class="col-md-10">
+                        <input id="DeveloperId" class="SelectedOption" type="text" value="" />
+                    </div>
+                </div>
+
+                <div id="Div_Released" class="form-group">
+                    <label class="control-label col-md-2">APP發行日期</label>
+                    <div class="col-md-10">
+                        <select id="Released" class="SelectedOption"></select>
+                    </div>
+                </div>
+
+                <div id="Div_LastUpdated" class="form-group">
+                    <label class="control-label col-md-2">APP最後更新日期</label>
+                    <div class="col-md-10">
+                        <select id="LastUpdated" class="SelectedOption"></select>
+                    </div>
+                </div>
+
+                <div id="Div_ContentRating" class="form-group">
+                    <label class="control-label col-md-2">APP分級</label>
+                    <div class="col-md-10">
+                        <select id="ContentRating" class="SelectedOption"></select>
+                    </div>
+                </div>
+
+                <div id="Div_AdSupported" class="form-group">
+                    <label class="control-label col-md-2">APP內是否有廣告</label>
+                    <div class="col-md-10">
+                        <ul id="AdSupported" class="SelectedOption"></ul>
+                    </div>
+                </div>
+
+                <div id="Div_InAppPurchases" class="form-group">
+                    <label class="control-label col-md-2">APP內是否有購買機制</label>
+                    <div class="col-md-10">
+                        <ul id="InAppPurchases" class="SelectedOption"></ul>
+                    </div>
+                </div>
+
+                <div id="Div_EditorChoice" class="form-group">
+                    <label class="control-label col-md-2">是否為編輯精選</label>
+                    <div class="col-md-10">
+                        <ul id="EditorChoice" class="SelectedOption"></ul>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-10">
+                        <input type="button" id="Search" class="btn btn-info SelectedOption" value="查詢" />
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 
-    <!--Chart1-->
-    <div id="Chart1" class="Chart1" style="border: 1px black solid;">
-        <!--篩選條件-->
-        <div id="Chart1_Selected" class="Chart1">
-        </div>
-        <!--圖表區-->
-        <div id="Chart1_Chart" class="Chart1">
-            aaa
-        </div>
+    <!--AppGrid圖表區-->
+    <div id="AppGrid" class="AppGrid Chart" style="margin-top:5px;">
     </div>
 
-    <!--Chart2-->
-    <div id="Chart2" class="Chart2" style="border: 1px black solid;">
-        <!--篩選條件-->
-        <div id="Chart2_Selected" class="Chart2">
-        </div>
-        <!--圖表區-->
-        <div id="Chart2_Chart" class="Chart2">
-            bbb
-        </div>
+    <!--Chart1圖表區-->
+    <!--<div style="width: 500px; height: 300px; position: absolute; right:50px; top:0px;margin-top:5px;">-->
+    <div id="Chart1" class="Chart1 Chart" style="margin-top:5px;">
+        <p id="first" style="font-size:21px;"></p>
+        <canvas id="firstline_chart" class="Chart1 Chart" width="500" height="300"></canvas>
     </div>
 
-    <!--Chart3-->
-    <div id="Chart3" class="Chart3" style="border: 1px black solid;">
-        <!--篩選條件-->
-        <div id="Chart3_Selected" class="Chart3">
-        </div>
-        <!--圖表區-->
-        <div id="Chart3_Chart" class="Chart3">
-            ccc
-        </div>
+    <!--Chart2圖表區-->
+    <div id="Chart2" class="Chart2 Chart" style="margin-top:5px;">
+        bbb
     </div>
 
-    <!--Chart4-->
-    <div id="Chart4" class="Chart4" style="border: 1px black solid;">
-        <!--篩選條件-->
-        <div id="Chart4_Selected" class="Chart4">
-        </div>
-        <!--圖表區-->
-        <div id="Chart4_Chart" class="Chart4">
-            ddd
-        </div>
+    <!--Chart3圖表區-->
+    <div id="Chart3" class="Chart3 Chart" style="margin-top:5px;">
+        ccc
+    </div>
+
+    <!--Chart4圖表區-->
+    <div id="Chart4" class="Chart4 Chart" style="margin-top:5px;">
+        ddd
+    </div>
+
+    <!--Chart5圖表區-->
+    <div id="Chart5" class="Chart5 Chart" style="margin-top:5px;">
+        eee
     </div>
 
     <!--<div id="NotFind" style="color:red;text-align:center;">查無資料</div>-->
@@ -111,3 +202,7 @@
 </div>
 
 <script src="~/Scripts/Index.js"></script>
+<!--圖表的js檔-->
+<script src="~/Scripts/firstline_chart.js"></script>
+
+

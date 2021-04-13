@@ -11,10 +11,10 @@ namespace AppMarketingAnalysis.Service
     {
         private AppMarketingAnalysis.Dao.IAppMarketingAnalysisDao AppMarketingAnalysisDao { get; set; }
 
-        //拿取APP_NAME的資料
-        public List<string> GetAppNameData()
+        //拿取AutoCompleteData的資料
+        public List<string> GetAutoCompleteData(string target)
         {
-            return AppMarketingAnalysisDao.GetAppNameData();
+            return AppMarketingAnalysisDao.GetAutoCompleteData(target);
         }
 
         //依照搜尋條件取得App資料

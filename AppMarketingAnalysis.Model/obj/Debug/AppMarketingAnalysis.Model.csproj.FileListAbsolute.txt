@@ -18,3 +18,12 @@ C:\Users\sam\Desktop\AppMarketingAnalysis\AppMarketingAnalysis.Model\obj\Debug\A
 C:\Users\sam\Desktop\AppMarketingAnalysis\AppMarketingAnalysis.Model\obj\Debug\AppMarketingAnalysis.Model.csproj.CopyComplete
 C:\Users\sam\Desktop\AppMarketingAnalysis\AppMarketingAnalysis.Model\obj\Debug\AppMarketingAnalysis.Model.dll
 C:\Users\sam\Desktop\AppMarketingAnalysis\AppMarketingAnalysis.Model\obj\Debug\AppMarketingAnalysis.Model.pdb
+C:\Users\sam\Desktop\AMA-2\AppMarketingAnalysis.Model\bin\Debug\AppMarketingAnalysis.Model.dll
+C:\Users\sam\Desktop\AMA-2\AppMarketingAnalysis.Model\bin\Debug\AppMarketingAnalysis.Model.pdb
+C:\Users\sam\Desktop\AMA-2\AppMarketingAnalysis.Model\bin\Debug\System.Web.Mvc.dll
+C:\Users\sam\Desktop\AMA-2\AppMarketingAnalysis.Model\bin\Debug\System.Web.Mvc.xml
+C:\Users\sam\Desktop\AMA-2\AppMarketingAnalysis.Model\bin\Debug\zh-Hant\System.Web.Mvc.resources.dll
+C:\Users\sam\Desktop\AMA-2\AppMarketingAnalysis.Model\obj\Debug\AppMarketingAnalysis.Model.csproj.CoreCompileInputs.cache
+C:\Users\sam\Desktop\AMA-2\AppMarketingAnalysis.Model\obj\Debug\AppMarketingAnalysis.Model.csproj.CopyComplete
+C:\Users\sam\Desktop\AMA-2\AppMarketingAnalysis.Model\obj\Debug\AppMarketingAnalysis.Model.dll
+C:\Users\sam\Desktop\AMA-2\AppMarketingAnalysis.Model\obj\Debug\AppMarketingAnalysis.Model.pdb

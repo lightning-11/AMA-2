@@ -1,15 +1,88 @@
-﻿//Table的清單,要修改Table的話修改這裡
+﻿//SelectedOpt的清單,要修改SelectedOpt的話記得這裡也要修改
+var SelectedOpt = ["AppName", "Category", "Rating",
+    "RatingCount", "InstallsRange", "InstallsCount",
+    "Free", "Price", "Size", "MinAndroid", "DeveloperId",
+    "Released", "LastUpdated", "ContentRating",
+    "AdSupported", "InAppPurchases", "EditorChoice"];
+
+//Table的清單,要修改Table的話記得這裡也要修改
 var TableList = [
-    { Table: "AppGrid", TableName: "表格" },
-    { Table: "Chart1", TableName: "圖表一" },
-    { Table: "Chart2", TableName: "圖表二" },
-    { Table: "Chart3", TableName: "圖表三" },
-    { Table: "Chart4", TableName: "圖表四" }
+    {
+        Table: "AppGrid", TableName: "表格", SelectedOpt: ["AppName", "Category", "Rating",
+            "RatingCount", "InstallsRange", "InstallsCount",
+            "Free", "Price", "Size", "MinAndroid", "DeveloperId",
+            "Released", "LastUpdated", "ContentRating",
+            "AdSupported", "InAppPurchases", "EditorChoice"]},
+    { Table: "Chart1", TableName: "圖表一", SelectedOpt: ["AppName", "InstallsRange", "Free", "", ""]},
+    { Table: "Chart2", TableName: "圖表二", SelectedOpt: ["AppName", "Size", "", "", ""]},
+    { Table: "Chart3", TableName: "圖表三", SelectedOpt: ["AppName", "InstallsRange", "", "", ""]},
+    { Table: "Chart4", TableName: "圖表四", SelectedOpt: ["AppName", "Size", "", "", ""]},
+    { Table: "Chart5", TableName: "圖表五", SelectedOpt: ["AppName", "InstallsRange", "Free", "Price", ""]}
 ];
 
 $(document).ready(function () {
+    /************ 範例Start ***********/
+    var SU = ["MinSizeUnit", "MaxSizeUnit"];     //下拉選單清單
+    for (var su_v = 0; su_v < SU.length; su_v++) {
+        $("#" + SU[su_v]).kendoDropDownList({
+            dataTextField: "Text",
+            dataValueField: "Value",
+            dataSource: [
+                { Text: "KB", Value: "k" },
+                { Text: "MB", Value: "m" },
+                { Text: "GB", Value: "g" }
+            ],
+            filter: "startswith",
+            autoWidth: true,
+        });
+    }
+    var DDL = ["Category", "InstallsRange"];     //下拉選單清單
+    for (var b = 0; b < DDL.length; b++) {
+        $("#" + DDL[b]).kendoDropDownList({
+            dataTextField: "Text",
+            dataValueField: "Value",
+            dataSource: [
+                { Text: "Black", Value: "1" },
+                { Text: "Orange", Value: "2" },
+                { Text: "Grey", Value: "3" }
+            ],
+            filter: "startswith",
+            optionLabel: '請選擇',
+            autoWidth: true,
+        });
+    }
+    var NTB1 = ["MinPrice", "MaxPrice"];
+    for (var d = 0; d < NTB1.length; d++) {
+        $("#" + NTB1[d]).kendoNumericTextBox({
+            format: "c",
+            min: 0,
+            decimals: 2,
+            step: 0.01,
+        });
+    }
+
+    var NTB2 = ["MinSize", "MaxSize"];
+    for (var e = 0; e < NTB2.length; e++) {
+        $("#" + NTB2[e]).kendoNumericTextBox({
+            format: "n",
+            min: 0,
+            decimals: 1,
+            step: 0.1,
+        });
+    }
+    
+    var CB = ["Free", "AdSupported", "InAppPurchases", "EditorChoice"];     //CheckBox清單
+    for (var c = 0; c < CB.length; c++) {
+        $("#" + CB[c]).kendoCheckBoxGroup({
+            items: ["True", "False"],
+            layout: "horizontal",
+            labelPosition: "after",
+            value: ["True", "False"]
+        }).data("kendoCheckBoxGroup");
+    }
+    /************ 範例End ***********/
     //初次產生AppGrid框架
-    $("#AppGrid_Chart").kendoGrid({
+    $("#AppGrid").kendoGrid({
         height: 540,
         sortable: true,
         pageable: {
@@ -31,37 +104,43 @@ $(document).ready(function () {
         ],
     });
 
-    //一開始先隱藏圖表區塊
+    //一開始先隱藏圖表區塊與篩選條件區塊
     for (var i = 0; i < TableList.length; i++) {
         $("#" + TableList[i].Table).hide();
+        $("#SelectedOption").hide();
+        $("#Chart_Selected").hide();
     }
 });
 
-//產生AppNameAutoComplete
-for (var i = 0; i < TableList; i++) {
-    $("#AppName ." + TableList[i].Table).kendoAutoComplete({
-        dataSource: {
-            transport: {
-                read: {
-                    url: "/AppMarketingAnalysis/AutoCompleteAppName",
-                    type: "post",
-                    dataType: "json",
-                }
-            }
-        },
-        filter: "startswith",
-        autoWidth: true,
-        height: 100,
-    });
-}
+//篩選條件縮放按鈕
+$("#Btn_SelectedOption").click(function () {
+    if ($("#Chart_Selected").is(":visible")) {
+        $("#Btn_SelectedOptionIcon").html("&#9660");
+        $("#Chart_Selected").hide();
+    } else {
+        $("#Btn_SelectedOptionIcon").html("&#9650");
+        $("#Chart_Selected").show();
+    }
+});
 
 //選擇圖表清單按鈕
 function SelectedTable(table) {
+    $(".bb").css("background-color", "#F0F0F0");
+    $("#" + table.id).css("background-color", "#97CBFF");
+    $("#SelectedOption").show();
     var TableId = table.id.substring(4, table.id.length);
     //選擇到的Table顯示,未選擇的Table隱藏
     for (var i = 0; i < TableList.length; i++) {
         if (TableList[i].Table == TableId) {
             $("#" + TableList[i].Table).show();
+            //選擇到的Table需要的篩選條件顯示, 不需要的篩選條件隱藏
+            for (var j = 0; j < SelectedOpt.length; j++) {
+                if ($.inArray(SelectedOpt[j], TableList[i].SelectedOpt) > -1) {
+                    $("#Div_" + SelectedOpt[j]).show();
+                } else {
+                    $("#Div_" + SelectedOpt[j]).hide();
+                }
+            }
         } else {
             $("#" + TableList[i].Table).hide();
         }
@@ -105,16 +184,16 @@ function GetAppGrid(searchResult) {
         pageSize: 20,
         sort: { field: "APP_NAME", dir: "desc" }   //排序
     });
-    $("#AppGrid_Chart").data("kendoGrid").setDataSource(dataSource);
+    $("#AppGrid").data("kendoGrid").setDataSource(dataSource);
 
     //判斷是否有資料
-    if ($("#AppGrid_Chart").data("kendoGrid").dataSource.data().length == 0) {
-        $("#AppGrid_Chart").hide();  //隱藏Grid
+    if ($("#AppGrid").data("kendoGrid").dataSource.data().length == 0) {
+        $("#AppGrid").hide();  //隱藏Grid
     }
     else {
-        $("#AppGrid_Chart").show();  //顯示Grid
+        $("#AppGrid").show();  //顯示Grid
     }
-    $("#AppGrid_Chart").data("kendoGrid").refresh();  //刷新Grid
+    $("#AppGrid").data("kendoGrid").refresh();  //刷新Grid
 }
 
 /*
@@ -127,14 +206,4 @@ function AppDetail(e) {
 */
 /////**AppGrid區 End**/////
 
-/////**Chart1區 Start**/////
-/////**Chart1區 End**/////
-
-/////**Chart2區 Start**/////
-/////**Chart2區 End**/////
-
-/////**Chart3區 Start**/////
-/////**Chart3區 End**/////
-
-/////**Chart4區 Start**/////
-/////**Chart4區 End**/////
+//APPNAME Cate Rating Ratingcount InstallsRange free

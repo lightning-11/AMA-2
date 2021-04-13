@@ -6,7 +6,7 @@ namespace AppMarketingAnalysis.Dao
 {
     public interface IAppMarketingAnalysisDao
     {
-        List<string> GetAppNameData();
+        List<string> GetAutoCompleteData(string target);
         List<AppMarketingAnalysisData> GetAppSearch(AppMarketingAnalysisData amad, string target);
         List<SelectListItem> SetDropDownListData(string target);
     }

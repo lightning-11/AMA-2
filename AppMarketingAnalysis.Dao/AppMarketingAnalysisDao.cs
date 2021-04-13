@@ -19,14 +19,20 @@ namespace AppMarketingAnalysis.Dao
         }
 
         /// <summary>
-        /// 拿取APP_NAME的資料
+        /// 拿取AutoCompleteData的資料
         /// </summary>
         /// <returns></returns>
-        public List<string> GetAppNameData()
+        public List<string> GetAutoCompleteData(string target)
         {
             DataTable dt = new DataTable();
-            string sql = @"SELECT AMAD.APP_NAME
+            string sql = "";
+            if (target == "AppName"){
+                sql = @"SELECT DISTINCT AMAD.APP_NAME
                            FROM AppMarketingAnalysisData as AMAD";
+            }else if (target == "DeveloperId"){
+                sql = @"SELECT DISTINCT AMAD.DEVELOPER_ID
+                           FROM AppMarketingAnalysisData as AMAD";
+            }
             using (SqlConnection conn = new SqlConnection(this.GetDBConnectionString()))
             {
                 conn.Open();
@@ -35,12 +41,16 @@ namespace AppMarketingAnalysis.Dao
                 sqlAdapter.Fill(dt);
                 conn.Close();
             }
-            List<string> appName = new List<string>();
+            List<string> autoCompleteData = new List<string>();
             foreach (DataRow row in dt.Rows)
             {
-                appName.Add(row.Field<String>("APP_NAME"));
+                if (target == "AppName"){
+                    autoCompleteData.Add(row.Field<String>("APP_NAME"));
+                }else if (target == "DeveloperId") {
+                    autoCompleteData.Add(row.Field<String>("DEVELOPER_ID"));
+                }
             }
-            return appName;
+            return autoCompleteData;
         }
 
         /// <summary>
@@ -51,21 +61,33 @@ namespace AppMarketingAnalysis.Dao
         public List<AppMarketingAnalysis.Model.AppMarketingAnalysisData> GetAppSearch(AppMarketingAnalysis.Model.AppMarketingAnalysisData amad, string target)
         {
             DataTable dt = new DataTable();
-            string sql = @"SELECT *
+            string sql = "";
+            if (target == "AppGrid"){
+                sql = @"SELECT *
                                         FROM AppMarketingAnalysisData as AMAD 
-                                        WHERE (UPPER(AMAD.BOOK_NAME) LIKE UPPER('%'+@APP_NAME+'%') OR @APP_NAME = '')
+                                        WHERE (UPPER(AMAD.APP_NAME) LIKE UPPER('%'+@APP_NAME+'%') OR @APP_NAME = '')
                                         AND
                                         
                                         ORDER BY AMAD.APP_NAME DESC";
 
-            using (SqlConnection conn = new SqlConnection(this.GetDBConnectionString()))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.Add(new SqlParameter("@APP_NAME", amad.APP_NAME == null ? string.Empty : amad.APP_NAME));
-                SqlDataAdapter sqlAdapter = new SqlDataAdapter(cmd);
-                sqlAdapter.Fill(dt);
-                conn.Close();
+                using (SqlConnection conn = new SqlConnection(this.GetDBConnectionString())){
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.Add(new SqlParameter("@APP_NAME", amad.APP_NAME == null ? string.Empty : amad.APP_NAME));
+                    SqlDataAdapter sqlAdapter = new SqlDataAdapter(cmd);
+                    sqlAdapter.Fill(dt);
+                    conn.Close();
+                }
+            }else if (target == "Chart1") {
+
+            }else if (target == "Chart2"){
+
+            }else if (target == "Chart3"){
+
+            }else if (target == "Chart4"){
+
+            }else if (target == "Chart5"){
+
             }
             return this.MapAppDataToList(dt);
         }
@@ -96,14 +118,11 @@ namespace AppMarketingAnalysis.Dao
         {
             DataTable dt = new DataTable();
             string sql = "";
-            if (target == "Category")  //拿取APP類別資料
-            {
-                sql = @"Select AMAD.CATEGORY as Text, AMAD.CATEGORY as Value
+            if (target == "Category"){  //拿取APP類別資料
+                sql = @"Select DISTINCT AMAD.CATEGORY as Text, AMAD.CATEGORY as Value
                                From AppMarketingAnalysisData as AMAD";
-            }
-            else if (target == "InstallsRange")    //拿取APP下載數量範圍資料
-            {
-                sql = @"Select AMAD.INSTALLS_RANGE as Text, AMAD.INSTALLS_RANGE as Value
+            }else if (target == "InstallsRange"){    //拿取APP下載數量範圍資料
+                sql = @"Select DISTINCT AMAD.INSTALLS_RANGE as Text, AMAD.INSTALLS_RANGE as Value
                                From AppMarketingAnalysisData as AMAD";
             }
             using (SqlConnection conn = new SqlConnection(this.GetDBConnectionString()))

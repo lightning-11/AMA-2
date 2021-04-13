@@ -36,10 +36,10 @@ namespace AppMarketingAnalysis.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult AutoCompleteBookName()
+        public JsonResult AutoCompleteData(string target)
         {
-            var AppNameData = AppMarketingAnalysisService.GetAppNameData(); //拿取APP_NAME資料
-            return Json(AppNameData);
+            var AutoCompleteData = AppMarketingAnalysisService.GetAutoCompleteData(target); //拿取APP_NAME資料
+            return Json(AutoCompleteData);
         }
 
         /// <summary>

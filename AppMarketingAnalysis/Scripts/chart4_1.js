@@ -2,10 +2,20 @@ function GetChart4_1() {
     // -----------------------------------------計算x、y軸值--------------------------------------------
     var list = [
         { "category": "Strategy", "maximumInstalls": "2161778", "ratingcount": "17297" },//3
-        { "category": "Communication", "maximumInstalls": "351560", "ratingcount": "2848" },//2
+        { "category": "Communication", "maximumInstalls": "351560", "ratingcount": "108408" },//2
         { "category": "Educational", "maximumInstalls": "12520805", "ratingcount": "10990" },//10
         { "category": "Tools", "maximumInstalls": "79304739", "ratingcount": "488639" },//4
         { "category": "Educational", "maximumInstalls": "29969311", "ratingcount": "44700" },//9
+        { "category": "Strategy", "maximumInstalls": "2161778", "ratingcount": "17947" },//3
+        { "category": "cation", "maximumInstalls": "351560", "ratingcount": "28748" },//2
+        { "category": "Educational", "maximumInstalls": "12520805", "ratingcount": "10990" },//10
+        { "category": "Tools", "maximumInstalls": "79304739", "ratingcount": "488639" },//4
+        { "category": "Eduonal", "maximumInstalls": "29969311", "ratingcount": "4700" },//9
+        { "category": "tegy", "maximumInstalls": "2161778", "ratingcount": "1797" },//3
+        { "category": "caon", "maximumInstalls": "351560", "ratingcount": "28748" },//2
+        { "category": "nal", "maximumInstalls": "12520805", "ratingcount": "400990" },//10
+        { "category": "Tls", "maximumInstalls": "79304739", "ratingcount": "488639" },//4
+        { "category": "Eal", "maximumInstalls": "29969311", "ratingcount": "473300" },//9
     ]
 
 
@@ -42,10 +52,10 @@ function GetChart4_1() {
             count2.push(1);
         }
     }
-    
-    for (var i = 0, len = count1.length; i < len; i++) {
+
+    for (var i = 0, len = count2.length; i < len; i++) {
         // avgmaximumInstalls.push(parseFloat(summaximumInstalls[i])/parseFloat(count1[i]));
-        avgratingcount.push(parseFloat(sumratingcount[i]) / parseFloat(count2[i]));
+        avgratingcount.push((parseFloat(sumratingcount[i]) / parseFloat(count2[i])).toFixed(0));
     }
 
     var outputStr = "---notrepeat:" + result + "<br> repeat: " + repeat
@@ -60,6 +70,18 @@ function GetChart4_1() {
 
 
     // -----------------------------------------作圖----------------------------------------------------
+
+    var bor = [];//'rgba(172, 171, 170, 0.8)';
+    var color = [];
+
+    for (var i = 0; i < avgratingcount.length; i++) {
+        var r = Math.floor(Math.random() * 250);
+        var g = Math.floor(Math.random() * 250);
+        var b = Math.floor(Math.random() * 250);
+        color[i] = 'rgba' + '(' + r + ',' + g + ',' + b + ',' + 0.3 + ')';
+        bor[i] = 'rgba' + '(' + r + ',' + g + ',' + b + ',' + 0.8 + ')';
+    }
+
     // var maxValue2 = Math.max.apply(null, avgmaximumInstalls);
     var ctx = document.getElementById('chart4_1').getContext('2d');
     var chart4_1 = new Chart(ctx, {
@@ -72,14 +94,50 @@ function GetChart4_1() {
                 data: avgratingcount, //資料值(y軸)
                 thickness: 1,
                 fill: false,
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: color,
+                borderColor: bor,
                 borderWidth: 1,
             }
             ]
         },
         options: {
-
+            scales: {
+                xAxes: [{
+                    // scaleLabel: {
+                    // display: true,
+                    // labelString: "Category",
+                    // fontSize: 15
+                    // padding: 0
+                    // },
+                    ticks: {
+                        maxRotation: 90
+                    }
+                }],
+                yAxes: [{
+                    type: 'linear',
+                    position: 'left',
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Average ratingcount (free apps)",
+                        fontSize: 18,
+                        padding: 10
+                    },
+                    // ticks: { 
+                    // max: 500000, 
+                    // min: 0 
+                    // } 
+                }]
+            },
+            title: {
+                display: true,
+                text: '',
+                // position: 'left',
+                fontSize: 15,
+                padding: 0
+            },
+            legend: {
+                display: false
+            },
             hover: {
                 animationDuration: 0  // 防止鼠标移上去，数字闪烁
             },

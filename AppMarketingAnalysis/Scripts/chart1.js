@@ -6,6 +6,16 @@ function GetChart1() {
         { "category": "Educational", "rating": "4.1" },//10
         { "category": "Tools", "rating": "4.3" },//4
         { "category": "Educational", "rating": "4" },//9
+        { "category": "Straegy", "rating": "4.3" },//3
+        { "category": "Comunication", "rating": "3.6" },//2
+        { "category": "Edcational", "rating": "4.1" },//10
+        { "category": "Tols", "rating": "4.3" },//4
+        { "category": "ducational", "rating": "4" },//9
+        { "category": "Strateg", "rating": "4.3" },//3
+        { "category": "Communicaton", "rating": "3.6" },//2
+        { "category": "Educationl", "rating": "4.1" },//10
+        { "category": "Tool", "rating": "4.3" },//4
+        { "category": "Educatioal", "rating": "4" },//9
     ]
 
 
@@ -47,6 +57,19 @@ function GetChart1() {
 
 
     // -----------------------------------------作圖----------------------------------------------------
+
+    function getcolor() {
+        var color = [];
+        var borderColor = [];
+        var r = Math.floor(Math.random() * 250);
+        var g = Math.floor(Math.random() * 250);
+        var b = Math.floor(Math.random() * 250);
+        color[0] = 'rgba' + '(' + r + ',' + g + ',' + b + ',' + 0.3 + ')';
+        return color;
+    }
+
+    var bor = 'rgba(172, 171, 170, 0.8)';
+
     var ctx = document.getElementById('chart1').getContext('2d');
     var chart1 = new Chart(ctx, {
         type: 'line',
@@ -69,14 +92,43 @@ function GetChart1() {
         },
         options: {
             scales: {
+                xAxes: [{
+                    // scaleLabel: {
+                    // display: true,
+                    // labelString: "Category",
+                    // fontSize: 15,
+                    // padding: 15
+                    // },
+                    ticks: {
+                        maxRotation: 90
+                    }
+                }]
+                ,
                 yAxes: [{
                     type: 'linear',
                     position: 'left',
                     ticks: {
                         max: 5,
                         min: 0
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Average rating score",
+                        // lineHeight: 0.5,
+                        fontSize: 18,
+                        padding: 10
                     }
                 }]
+            },
+            title: {
+                display: true,
+                text: '',
+                // position: 'left',
+                fontSize: 15,
+                padding: 0
+            },
+            legend: {
+                display: false
             },
             hover: {
                 animationDuration: 0  // 防止鼠标移上去，数字闪烁

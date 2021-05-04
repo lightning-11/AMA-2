@@ -10,7 +10,13 @@ function GetChart5() {
         { "category": "Communication", "Released": "2018/10/3" },//78
         { "category": "Communication", "Released": "2012/9/26" },//184
         { "category": "Tools", "Released": "2020/9/14" },//84
-        { "category": "Tools", "Released": "2018/12/9" }//50
+        { "category": "Tools", "Released": "2018/12/9" },//50
+        { "category": "Tl", "Released": "2006/9/14" },//84
+        { "category": "Tl", "Released": "2018/12/9" },
+        { "category": "Communication", "Released": "2018/10/3" },//78
+        { "category": "Communication", "Released": "2012/9/26" },//184
+        { "category": "Tools", "Released": "2009/9/14" },//84
+        { "category": "Educational", "Released": "2014/12/9" }//50
     ]
 
 
@@ -39,8 +45,9 @@ function GetChart5() {
             Releasedvalue[s] = new Array();//二維
             Releasedvalue[s][0] = item;
             Releasedvalue[s].push(year);//不同category，year還未有
+            s++;
         }
-        s++;
+
 
         if (year < minyear) {
             minyear = year;
@@ -85,85 +92,81 @@ function GetChart5() {
 
 
     // -----------------------------------------作圖----------------------------------------------------
+
+    function getcolor() {
+        var color = [];
+        var borderColor = [];
+        var r = Math.floor(Math.random() * 250);
+        var g = Math.floor(Math.random() * 250);
+        var b = Math.floor(Math.random() * 250);
+        color[0] = 'rgba' + '(' + r + ',' + g + ',' + b + ',' + 0.3 + ')';
+        return color;
+    }
+
+    var bor = 'rgba(172, 171, 170, 0.8)';
+
+    var alldata = [];
+    for (var i = 0; i < Releasedvalue.length; i++) {
+        var obj = {};
+        obj.label = Releasedvalue[i][0];
+        obj.data = sumReleased[i];
+        obj.backgroundColor = [getcolor()];
+        obj.borderColor = [bor];
+        obj.borderWidth = 3; //
+        obj.borderColor = obj.backgroundColor; //
+        obj.pointRadius = 5;
+        obj.pointHoverRadius = 5; //觸碰點後的點的大小
+        obj.pointBorderWidth = 2; //點的邊框
+        obj.pointStyle = 'rectRounded'; //點的形狀
+        // obj.fill = false; //
+        alldata.push(obj);
+    }
+
     var ctx = document.getElementById('chart5').getContext('2d');
     var chart5 = new Chart(ctx, {
         type: 'line',
         data: {
             labels: yearlist, //label值(x軸)
-            datasets: [
-                {
-                    label: Releasedvalue[0][0], //標頭值
-                    // yAxisID: 'A', 
-                    data: sumReleased[0], //資料值(y軸)
-                    thickness: 1,
-                    // fill: false,
-                    backgroundColor: ['rgba(255, 99, 132, 0.2)'],
-                    borderColor: ['rgba(255,99,132,1)'],
-                    borderWidth: 1,
-                    pointRadius: 5,
-                    pointHoverRadius: 5, //觸碰點後的點的大小
-                    // pointHitRadius: 5,
-                    // pointBorderWidth: 2, //點的邊框
-                    pointStyle: 'rectRounded' //點的形狀
-                }
-                , {
-                    label: Releasedvalue[1][0], //標頭值
-                    // yAxisID: 'A', 
-                    data: sumReleased[1], //資料值(y軸)
-                    thickness: 1,
-                    // fill: false,
-                    backgroundColor: ['rgba(54, 162, 235, 0.2)'],
-                    borderColor: ['rgba(54, 162, 235, 1)'],
-                    borderWidth: 1,
-                    pointRadius: 5,
-                    pointHoverRadius: 5, //觸碰點後的點的大小
-                    // pointHitRadius: 5,
-                    // pointBorderWidth: 2, //點的邊框
-                    pointStyle: 'rectRounded' //點的形狀
-                }
-                , {
-                    label: Releasedvalue[2][0], //標頭值
-                    // yAxisID: 'A', 
-                    data: sumReleased[2], //資料值(y軸)
-                    thickness: 1,
-                    // fill: false,
-                    backgroundColor: ['rgba(255, 206, 86, 0.2)'],
-                    borderColor: ['rgba(255, 206, 86, 1)'],
-                    borderWidth: 1,
-                    pointRadius: 5,
-                    pointHoverRadius: 5, //觸碰點後的點的大小
-                    // pointHitRadius: 5,
-                    // pointBorderWidth: 2, //點的邊框
-                    pointStyle: 'rectRounded' //點的形狀
-                }
-                , {
-                    label: Releasedvalue[3][0], //標頭值
-                    // yAxisID: 'A', 
-                    data: sumReleased[3], //資料值(y軸)
-                    thickness: 1,
-                    // fill: false,
-                    backgroundColor: ['rgba(75, 192, 192, 0.2)'],
-                    borderColor: ['rgba(75, 192, 192, 1)'],
-                    borderWidth: 1,
-                    pointRadius: 5,
-                    pointHoverRadius: 5, //觸碰點後的點的大小
-                    // pointHitRadius: 5,
-                    // pointBorderWidth: 2, //點的邊框
-                    pointStyle: 'rectRounded' //點的形狀
-                }
-            ]
+            datasets: alldata
         },
         options: {
             scales: {
+                xAxes: [{
+                    // scaleLabel: {
+                    // display: true,
+                    // labelString: "Category",
+                    // fontSize: 15
+                    // padding: 0
+                    // },
+                    ticks: {
+                        maxRotation: 90
+                    }
+                }],
                 yAxes: [{
                     // id: 'A', 
                     type: 'linear',
                     position: 'left',
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Each year Released apps count",
+                        fontSize: 18,
+                        padding: 10
+                    },
                     // ticks: { 
                     // max: 5, 
                     // min: 0 
                     // } 
                 }]
+            },
+            title: {
+                display: false,
+                text: '',
+                // position: 'left',
+                fontSize: 15,
+                padding: 0
+            },
+            legend: {
+                display: true
             },
             hover: {
                 animationDuration: 0  // 防止鼠标移上去，数字闪烁

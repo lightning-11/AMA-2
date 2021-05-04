@@ -6,6 +6,12 @@ function GetChart3() {
         { "category": "Educational", "installs": "10,000,000+", "developerId": "BabyBus" },//10
         { "category": "Tools", "installs": "50,000,000+", "developerId": "TheMauSoft" },//4
         { "category": "Educational", "installs": "10,000,000+", "developerId": "BabyBus2" },//9
+        { "category": "Educational", "installs": "10,000,000+", "developerId": "BabyBus3" },//9
+        { "category": "Stegy", "installs": "1,000,000+", "developerId": "Skizze Games" },//3
+        { "category": "Commuication", "installs": "100,000+", "developerId": "Xavier Roche" },//2
+        { "category": "Educaional", "installs": "10,000,000+", "developerId": "BabyBus" },//10
+        { "category": "Tols", "installs": "50,000,000+", "developerId": "TheMauSoft" },//4
+        { "category": "Educatal", "installs": "10,000,000+", "developerId": "BabyBus2" }//9
     ]
 
 
@@ -32,15 +38,17 @@ function GetChart3() {
             developerIdvalue[index].push(list[i].developerId);//同category，developerId直接加，無論是否相同
 
         }
-        else {
+        else //未出現過的category
+        {
             result.push(item);
             suminstalls.push(list[i].installs.replace(/[^\w\s]/g, ""));//replace去除任何不是數字、字母的符號
             count1.push(1);
             developerIdvalue[s] = new Array();//二維
             developerIdvalue[s][0] = item;
             developerIdvalue[s].push(list[i].developerId);//不同category，developerId還未有
+            s++;
         }
-        s++;
+
     }
 
     for (var i = 0, len = count1.length; i < len; i++) {
@@ -64,6 +72,18 @@ function GetChart3() {
 
 
     // -----------------------------------------作圖----------------------------------------------------
+
+    var bor = [];//'rgba(172, 171, 170, 0.8)';
+    var color = [];
+
+    for (var i = 0; i < avginstalls.length; i++) {
+        var r = Math.floor(Math.random() * 250);
+        var g = Math.floor(Math.random() * 250);
+        var b = Math.floor(Math.random() * 250);
+        color[i] = 'rgba' + '(' + r + ',' + g + ',' + b + ',' + 0.3 + ')';
+        bor[i] = 'rgba' + '(' + r + ',' + g + ',' + b + ',' + 0.8 + ')';
+    }
+
     var ctx = document.getElementById('chart3').getContext('2d');
     var chart3 = new Chart(ctx, {
         type: 'bar',
@@ -71,27 +91,13 @@ function GetChart3() {
             labels: result, //label值(x軸)
             datasets: [{
                 type: 'bar',
-                label: 'avginstalls', //標頭值
+                label: 'Average Installs', //標頭值
                 yAxisID: 'A',
                 data: avginstalls, //資料值(y軸)
                 thickness: 1,
                 fill: false,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
+                backgroundColor: color,
+                borderColor: bor,
                 borderWidth: 1,
                 pointRadius: 5,
                 pointHoverRadius: 5, //觸碰點後的點的大小
@@ -101,7 +107,7 @@ function GetChart3() {
             }
                 , {
                 type: 'line',
-                label: 'diffirent_developerId', //標頭值
+                label: 'Diffirent_DeveloperID', //標頭值
                 yAxisID: 'B',
                 data: sumdeveloperId, //資料值(y軸)
                 fill: false,
@@ -118,10 +124,27 @@ function GetChart3() {
         },
         options: {
             scales: {
+                xAxes: [{
+                    // scaleLabel: {
+                    // display: true,
+                    // labelString: "Category",
+                    // fontSize: 15
+                    // padding: 0
+                    // },
+                    ticks: {
+                        maxRotation: 90
+                    }
+                }],
                 yAxes: [{
                     id: 'A',
                     type: 'linear',
                     position: 'left',
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Average Installs (bar)",
+                        fontSize: 18,
+                        padding: 10
+                    },
                     // ticks: { 
                     // max: 5, 
                     // min: 0 
@@ -130,11 +153,27 @@ function GetChart3() {
                     id: 'B',
                     type: 'linear',
                     position: 'right',
-                    // ticks: { 
-                    // max: 5, 
-                    // min: 0 
-                    // } 
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Diffirent DeveloperID (line)",
+                        fontSize: 18,
+                        padding: 10
+                    },
+                    ticks: {
+                        // max: 5, 
+                        min: 0
+                    }
                 }]
+            },
+            title: {
+                display: false,
+                text: '',
+                // position: 'left',
+                fontSize: 15,
+                padding: 0
+            },
+            legend: {
+                display: true
             },
             hover: {
                 animationDuration: 0  // 防止鼠标移上去，数字闪烁

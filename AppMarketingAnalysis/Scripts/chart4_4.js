@@ -5,7 +5,17 @@ function GetChart4_4() {
         { "category": "Communication", "maximumInstalls": "351560", "ratingcount": "2848", "price": "2.6" },//2
         { "category": "Educational", "maximumInstalls": "12520805", "ratingcount": "10990", "price": "1.5" },//10
         { "category": "Tools", "maximumInstalls": "79304739", "ratingcount": "488639", "price": "0" },//4
-        { "category": "Educational", "maximumInstalls": "29969311", "ratingcount": "44700", "price": "2.2" }//9
+        { "category": "Educational", "maximumInstalls": "29969311", "ratingcount": "44700", "price": "2.2" },//9
+        { "category": "Strateg", "maximumInstalls": "2161778", "ratingcount": "17297", "price": "0" },//3
+        { "category": "Communicati", "maximumInstalls": "351560", "ratingcount": "2848", "price": "2.6" },//2
+        { "category": "Educat", "maximumInstalls": "12520805", "ratingcount": "10990", "price": "1.5" },//10
+        { "category": "Tool", "maximumInstalls": "79304739", "ratingcount": "488639", "price": "0" },//4
+        { "category": "Ecational", "maximumInstalls": "29969311", "ratingcount": "44700", "price": "2.2" },//9
+        { "category": "Strategy", "maximumInstalls": "2161778", "ratingcount": "17297", "price": "0" },//3
+        { "category": "Commcation", "maximumInstalls": "351560", "ratingcount": "2848", "price": "2.6" },//2
+        { "category": "ucational", "maximumInstalls": "12520805", "ratingcount": "10990", "price": "1.5" },//10
+        { "category": "Tools", "maximumInstalls": "79304739", "ratingcount": "488639", "price": "0" },//4
+        { "category": "Edcational", "maximumInstalls": "29969311", "ratingcount": "44700", "price": "4.2" }//9
     ]
 
 
@@ -57,10 +67,10 @@ function GetChart4_4() {
         }
     }
 
-    for (var i = 0, len = count1_pay.length; i < len; i++) {
+    for (var i = 0, len = count2_pay.length; i < len; i++) {
         // avgmaximumInstalls_pay.push(parseFloat(summaximumInstalls_pay[i])/parseFloat(count1_pay[i]));
-        avgratingcount_pay.push(parseFloat(sumratingcount_pay[i]) / parseFloat(count2_pay[i]));
-        avgprice.push(parseFloat(sumprice[i]) / parseFloat(count3_pay[i]));
+        avgratingcount_pay.push((parseFloat(sumratingcount_pay[i]) / parseFloat(count2_pay[i])).toFixed(0));
+        avgprice.push((parseFloat(sumprice[i]) / parseFloat(count3_pay[i])).toFixed(0));
     }
 
     var outputStr = "---notrepeat:" + result + "<br> repeat: " + repeat
@@ -78,7 +88,19 @@ function GetChart4_4() {
 
 
     // -----------------------------------------作圖----------------------------------------------------
-    var maxValue2 = Math.max.apply(null, avgmaximumInstalls);
+
+    var bor = [];//'rgba(172, 171, 170, 0.8)';
+    var color = [];
+
+    for (var i = 0; i < avgratingcount_pay.length; i++) {
+        var r = Math.floor(Math.random() * 250);
+        var g = Math.floor(Math.random() * 250);
+        var b = Math.floor(Math.random() * 250);
+        color[i] = 'rgba' + '(' + r + ',' + g + ',' + b + ',' + 0.3 + ')';
+        bor[i] = 'rgba' + '(' + r + ',' + g + ',' + b + ',' + 0.8 + ')';
+    }
+
+    //var maxValue2 = Math.max.apply(null, avgmaximumInstalls);
     var ctx = document.getElementById('chart4_4').getContext('2d');
     var chart4_4 = new Chart(ctx, {
         type: 'bar',
@@ -91,13 +113,13 @@ function GetChart4_4() {
                 data: avgratingcount_pay, //資料值(y軸)
                 thickness: 1,
                 fill: false,
-                backgroundColor: 'rgba(255, 200, 100, 0.2)',
-                borderColor: 'rgba(255, 200, 100, 1)',
+                backgroundColor: color,
+                borderColor: bor,
                 borderWidth: 1,
             }
                 , {
                 type: 'line',
-                label: 'Average maximumInstalls (pay apps)', //標頭值
+                label: 'Average MaximumInstalls (pay apps)', //標頭值
                 yAxisID: 'B',
                 data: avgprice, //資料值(y軸)
                 fill: false,
@@ -109,10 +131,27 @@ function GetChart4_4() {
         },
         options: {
             scales: {
+                xAxes: [{
+                    // scaleLabel: {
+                    // display: true,
+                    // labelString: "Category",
+                    // fontSize: 15
+                    // padding: 0
+                    // },
+                    ticks: {
+                        maxRotation: 90
+                    }
+                }],
                 yAxes: [{
                     id: 'A',
                     type: 'linear',
                     position: 'left',
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Average ratingcount (pay apps)",
+                        fontSize: 18,
+                        padding: 10
+                    }
                     // ticks: { 
                     // max: 5, 
                     // min: 0 
@@ -121,13 +160,28 @@ function GetChart4_4() {
                     id: 'B',
                     type: 'linear',
                     position: 'right',
-                    // ticks: { 
-                    // max: maxValue2*1.05, 
-                    // min: 0
-                    // } 
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Average MaximumInstalls (pay apps)",
+                        fontSize: 18,
+                        padding: 10
+                    },
+                    ticks: {
+                        // max: maxValue2*1.05, 
+                        min: 0
+                    }
                 }]
             },
-
+            title: {
+                display: false,
+                text: '',
+                // position: 'left',
+                fontSize: 15,
+                padding: 0
+            },
+            legend: {
+                display: true
+            },
             hover: {
                 animationDuration: 0  // 防止鼠标移上去，数字闪烁
             },

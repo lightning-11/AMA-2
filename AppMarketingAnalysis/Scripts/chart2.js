@@ -6,6 +6,21 @@ function GetChart2() {
         { "category": "Educational", "ratingcount": "10990" },//10
         { "category": "Tools", "ratingcount": "488639" },//4
         { "category": "Educational", "ratingcount": "44700" },//9
+        { "category": "Strateg", "ratingcount": "17297" },//3
+        { "category": "Communiation", "ratingcount": "2848" },//2
+        { "category": "Educatonal", "ratingcount": "10990" },//10
+        { "category": "Tool", "ratingcount": "488639" },//4
+        { "category": "Educatonal", "ratingcount": "44700" },//9
+        { "category": "Srategy", "ratingcount": "17297" },//3
+        { "category": "ommunication", "ratingcount": "2848" },//2
+        { "category": "Eucational", "ratingcount": "10990" },//10
+        { "category": "ools", "ratingcount": "488639" },//4
+        { "category": "Eucational", "ratingcount": "44700" },//9
+        { "category": "Srgy", "ratingcount": "17297" },//3
+        { "category": "omnication", "ratingcount": "2848" },//2
+        { "category": "Eucaal", "ratingcount": "10990" },//10
+        { "category": "oos", "ratingcount": "488639" },//4
+        { "category": "Eucional", "ratingcount": "44700" },//9
     ]
 
 
@@ -49,7 +64,20 @@ function GetChart2() {
 
 
     // -----------------------------------------作圖----------------------------------------------------
+
+    var bor = [];//'rgba(172, 171, 170, 0.8)';
+    var color = [];
+
+    for (var i = 0; i < avgratingcount.length; i++) {
+        var r = Math.floor(Math.random() * 250);
+        var g = Math.floor(Math.random() * 250);
+        var b = Math.floor(Math.random() * 250);
+        color[i] = 'rgba' + '(' + r + ',' + g + ',' + b + ',' + 0.3 + ')';
+        bor[i] = 'rgba' + '(' + r + ',' + g + ',' + b + ',' + 0.8 + ')';
+    }
+
     var ctx = document.getElementById('chart2').getContext('2d');
+
     var chart2 = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -57,36 +85,49 @@ function GetChart2() {
             datasets: [{
                 label: 'Average ratingcount', //標頭值
                 data: avgratingcount, //資料值(y軸)
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
+                backgroundColor: color,
+                borderColor: bor,
                 borderWidth: 1,
             }
             ]
         },
         options: {
             scales: {
+                xAxes: [{
+                    // scaleLabel: {
+                    // display: true,
+                    // labelString: "Category",
+                    // fontSize: 15
+                    // padding: 0
+                    // },
+                    ticks: {
+                        maxRotation: 90
+                    }
+                }],
                 yAxes: [{
                     type: 'linear',
                     position: 'left',
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Average ratingcount",
+                        fontSize: 18,
+                        padding: 10
+                    },
                     // ticks: { 
                     // max: 500000, 
                     // min: 0 
                     // } 
                 }]
+            },
+            title: {
+                display: true,
+                text: '',
+                // position: 'left',
+                fontSize: 15,
+                padding: 0
+            },
+            legend: {
+                display: false
             },
             hover: {
                 animationDuration: 0  // 防止鼠标移上去，数字闪烁

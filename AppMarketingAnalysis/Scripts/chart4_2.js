@@ -6,6 +6,16 @@ function GetChart4_2() {
         { "category": "Educational", "maximumInstalls": "12520805", "ratingcount": "10990" },//10
         { "category": "Tools", "maximumInstalls": "79304739", "ratingcount": "488639" },//4
         { "category": "Educational", "maximumInstalls": "29969311", "ratingcount": "44700" },//9
+        { "category": "Sategy", "maximumInstalls": "2161778", "ratingcount": "17297" },//3
+        { "category": "Cmunication", "maximumInstalls": "351560", "ratingcount": "2848" },//2
+        { "category": "Ecational", "maximumInstalls": "12520805", "ratingcount": "10990" },//10
+        { "category": "Tls", "maximumInstalls": "79304739", "ratingcount": "488639" },//4
+        { "category": "Ecational", "maximumInstalls": "29969311", "ratingcount": "44700" },//9
+        { "category": "Strategy", "maximumInstalls": "2161778", "ratingcount": "17297" },//3
+        { "category": "Communicatin", "maximumInstalls": "351560", "ratingcount": "2848" },//2
+        { "category": "Educational", "maximumInstalls": "12520805", "ratingcount": "10990" },//10
+        { "category": "Tools", "maximumInstalls": "79304739", "ratingcount": "488639" },//4
+        { "category": "Edunal", "maximumInstalls": "29969311", "ratingcount": "44700" },//9
     ]
 
 
@@ -44,7 +54,7 @@ function GetChart4_2() {
     }
 
     for (var i = 0, len = count1.length; i < len; i++) {
-        avgmaximumInstalls.push(parseFloat(summaximumInstalls[i]) / parseFloat(count1[i]));
+        avgmaximumInstalls.push((parseFloat(summaximumInstalls[i]) / parseFloat(count1[i])).toFixed(0));
         // avgratingcount.push(parseFloat(sumratingcount[i])/parseFloat(count2[i]));
     }
 
@@ -60,24 +70,72 @@ function GetChart4_2() {
 
 
     // -----------------------------------------作圖----------------------------------------------------
-    var maxValue2 = Math.max.apply(null, avgmaximumInstalls);
+
+    var bor = [];//'rgba(172, 171, 170, 0.8)';
+    var color = [];
+
+    for (var i = 0; i < avgmaximumInstalls.length; i++) {
+        var r = Math.floor(Math.random() * 250);
+        var g = Math.floor(Math.random() * 250);
+        var b = Math.floor(Math.random() * 250);
+        color[i] = 'rgba' + '(' + r + ',' + g + ',' + b + ',' + 0.3 + ')';
+        bor[i] = 'rgba' + '(' + r + ',' + g + ',' + b + ',' + 0.8 + ')';
+    }
+
+    // var maxValue2 = Math.max.apply(null, avgmaximumInstalls);
     var ctx = document.getElementById('chart4_2').getContext('2d');
     var chart4_2 = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: result, //label值(x軸)
             datasets: [{
-                label: 'Average maximumInstalls', //標頭值
+                label: 'Average MaximumInstalls', //標頭值
                 data: avgmaximumInstalls, //資料值(y軸)
                 thickness: 1,
-                backgroundColor: 'rgba(255, 99, 0, 0.2)',
-                borderColor: 'rgba(255, 99, 0, 1)',
+                backgroundColor: color,
+                borderColor: bor,
                 borderWidth: 1,
             }
             ]
         },
         options: {
-
+            scales: {
+                xAxes: [{
+                    // scaleLabel: {
+                    // display: true,
+                    // labelString: "Category",
+                    // fontSize: 15
+                    // padding: 0
+                    // },
+                    ticks: {
+                        maxRotation: 90
+                    }
+                }],
+                yAxes: [{
+                    type: 'linear',
+                    position: 'left',
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Average MaximumInstalls (Free apps)",
+                        fontSize: 18,
+                        padding: 10
+                    },
+                    // ticks: { 
+                    // max: 500000, 
+                    // min: 0 
+                    // } 
+                }]
+            },
+            title: {
+                display: true,
+                text: '',
+                // position: 'left',
+                fontSize: 15,
+                padding: 0
+            },
+            legend: {
+                display: false
+            },
             hover: {
                 animationDuration: 0  // 防止鼠标移上去，数字闪烁
             },

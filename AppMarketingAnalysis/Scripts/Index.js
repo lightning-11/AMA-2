@@ -5,6 +5,8 @@ document.write('<script src="/Scripts/chart4_1.js"></script>');
 document.write('<script src="/Scripts/chart4_2.js"></script>');
 document.write('<script src="/Scripts/chart4_3.js"></script>');
 document.write('<script src="/Scripts/chart4_4.js"></script>');
+document.write('<script src="/Scripts/chart4_5.js"></script>');
+document.write('<script src="/Scripts/chart4_6.js"></script>');
 document.write('<script src="/Scripts/chart5.js"></script>');
 document.write('<script src="/Scripts/chart6.js"></script>');
 
@@ -361,6 +363,8 @@ function SelectedTable(table) {
                 GetChart4_2();
                 GetChart4_3();
                 GetChart4_4();
+                GetChart4_5();
+                GetChart4_6();
             } else if ($("#Btn_Chart5").is(".beChosed")) {
                 GetChart5();
             } else if ($("#Btn_Chart6").is(".beChosed")) {

@@ -62,7 +62,8 @@ namespace AppMarketingAnalysis.Dao
         {
             DataTable dt = new DataTable();
             string sql = "";
-            if (target == "AppGrid"){
+            if (target == "AppGrid")
+            {
                 sql = @"SELECT *
                                         FROM AppMarketingAnalysisData as AMAD 
                                         WHERE (UPPER(AMAD.APP_NAME) LIKE UPPER('%'+@APP_NAME+'%') OR @APP_NAME = '')
@@ -70,7 +71,8 @@ namespace AppMarketingAnalysis.Dao
                                         
                                         ORDER BY AMAD.APP_NAME DESC";
 
-                using (SqlConnection conn = new SqlConnection(this.GetDBConnectionString())){
+                using (SqlConnection conn = new SqlConnection(this.GetDBConnectionString()))
+                {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.Add(new SqlParameter("@APP_NAME", amad.APP_NAME == null ? string.Empty : amad.APP_NAME));
@@ -78,15 +80,29 @@ namespace AppMarketingAnalysis.Dao
                     sqlAdapter.Fill(dt);
                     conn.Close();
                 }
-            }else if (target == "Chart1") {
+            }
+            else if (target == "AppGrid2")
+            {
 
-            }else if (target == "Chart2"){
+            }
+            else if (target == "Chart1")
+            {
 
-            }else if (target == "Chart3"){
+            }
+            else if (target == "Chart2")
+            {
 
-            }else if (target == "Chart4"){
+            }
+            else if (target == "Chart3")
+            {
 
-            }else if (target == "Chart5"){
+            }
+            else if (target == "Chart4")
+            {
+
+            }
+            else if (target == "Chart5")
+            {
 
             }
             return this.MapAppDataToList(dt);

@@ -24,12 +24,20 @@ namespace AppMarketingAnalysis.Model
         public string CATEGORY { get; set; }
 
         //平均評分
-        [DisplayName("平均評分")]
+        [DisplayName("評分")]
         public int RATING { get; set; }
 
         //評分數量
         [DisplayName("評分數量")]
         public int RATING_COUNT { get; set; }
+
+        //篩選最小評分數量(前端)
+        [DisplayName("篩選最小評分數量")]
+        public int MIN_RATING_COUNT { get; set; }
+
+        //篩選最大評分數量(前端)
+        [DisplayName("篩選最大評分數量")]
+        public int MAX_RATING_COUNT { get; set; }
 
         //下載數量範圍
         [DisplayName("下載數量範圍")]
@@ -39,6 +47,14 @@ namespace AppMarketingAnalysis.Model
         [DisplayName("下載數量")]
         public int INSTALLS_COUNT { get; set; }
 
+        //篩選最小下載數量(前端)
+        [DisplayName("篩選最小下載數量")]
+        public int MIN_INSTALLS_COUNT { get; set; }
+
+        //篩選最大下載數量(前端)
+        [DisplayName("篩選最大下載數量")]
+        public int MAX_INSTALLS_COUNT { get; set; }
+
         //APP是免費還是付費
         [DisplayName("APP是免費還是付費")]
         public bool FREE { get; set; }
@@ -47,9 +63,25 @@ namespace AppMarketingAnalysis.Model
         [DisplayName("APP價格")]
         public int PRICE { get; set; }
 
+        //篩選最小APP價格(前端)
+        [DisplayName("篩選最小APP價格")]
+        public int MIN_PRICE { get; set; }
+
+        //篩選最大APP價格(前端)
+        [DisplayName("篩選最大APP價格")]
+        public int MAX_PRICE { get; set; }
+
         //APP檔案大小
         [DisplayName("APP檔案大小")]
         public string SIZE { get; set; }
+
+        //篩選最小APP檔案大小(前端)
+        [DisplayName("篩選最小APP檔案大小")]
+        public string MIN_SIZE { get; set; }
+
+        //篩選最大APP檔案大小(前端)
+        [DisplayName("篩選最大APP檔案大小")]
+        public string MAX_SIZE { get; set; }
 
         //最小支援安卓版本
         [DisplayName("最小支援安卓版本")]
@@ -63,9 +95,25 @@ namespace AppMarketingAnalysis.Model
         [DisplayName("APP發行日期")]
         public string RELEASED { get; set; }
 
+        //篩選最小APP發行日期(前端)
+        [DisplayName("篩選最小APP發行日期")]
+        public string MIN_RELEASED { get; set; }
+
+        //篩選最大APP發行日期(前端)
+        [DisplayName("篩選最大APP發行日期")]
+        public string MAX_RELEASED { get; set; }
+
         //APP最後更新日期
         [DisplayName("APP最後更新日期")]
         public string LAST_UPDATED { get; set; }
+
+        //篩選最小APP最後更新日期(前端)
+        [DisplayName("篩選最小APP最後更新日期")]
+        public string MIN_LAST_UPDATED { get; set; }
+
+        //篩選最大APP最後更新日期(前端)
+        [DisplayName("篩選最大APP最後更新日期")]
+        public string MAX_LAST_UPDATED { get; set; }
 
         //APP分級
         [DisplayName("APP分級")]

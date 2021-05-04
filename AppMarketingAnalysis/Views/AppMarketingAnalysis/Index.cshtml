@@ -3,19 +3,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>AppMarketingAnalysis</h2>
+<a href="/AppMarketingAnalysis/Index"><h2>AppMarketingAnalysis</h2></a>
 <hr />
 
 <div id="Btn_Table" class="btn-group" role="group" aria-label="Btn Table">
     <button type="button" id="Btn_AppGrid" class="btn bb" value="AppGrid" onclick="SelectedTable(this); ">表格</button>
+    <button type="button" id="Btn_AppGrid2" class="btn bb" value="AppGrid2" onclick="SelectedTable(this); ">第二個表格</button>
     <button type="button" id="Btn_Chart1" class="btn bb" value="Chart1" onclick="SelectedTable(this); ">圖表一</button>
     <button type="button" id="Btn_Chart2" class="btn bb" value="Chart2" onclick="SelectedTable(this); ">圖表二</button>
     <button type="button" id="Btn_Chart3" class="btn bb" value="Chart3" onclick="SelectedTable(this); ">圖表三</button>
     <button type="button" id="Btn_Chart4" class="btn bb" value="Chart4" onclick="SelectedTable(this); ">圖表四</button>
     <button type="button" id="Btn_Chart5" class="btn bb" value="Chart5" onclick="SelectedTable(this); ">圖表五</button>
+    <button type="button" id="Btn_Chart6" class="btn bb" value="Chart6" onclick="SelectedTable(this); ">圖表六</button>
 </div>
 
-<div id="Div_Table" style="border: 1px black solid;">
+<div id="Div_Table" class="row" style="border: 1px black solid;">
     <div id="SelectedOption" style="background-color:antiquewhite;height:30px;">
         <button type="button" id="Btn_SelectedOption" class="btn btn-info btn-sm" style="width:100%;">
             <div style="text-align: center;display:inline;">篩選條件</div>
@@ -26,171 +28,197 @@
     <!--篩選條件-->
     <div id="Chart_Selected" class="Selected" style="margin-top:5px;">
         <form action="/AppMarketingAnalysis/Index" method="post">
-            <div class="form-horizontal">
+            <div class="form-horizontal row">
                 <div id="Div_AppName" class="form-group">
-                    <label class="control-label col-md-2">APP名稱</label>
-                    <div class="col-md-10">
+                    <label class="control-label col-md-2 col-sm-2">APP名稱</label>
+                    <div class="col-md-9 col-sm-9">
                         <input id="AppName" class="SelectedOption" type="text" value="" />
                     </div>
                 </div>
 
                 <div id="Div_Category" class="form-group">
-                    <label class="control-label col-md-2">APP類別</label>
-                    <div class="col-md-10">
-                        <select id="Category" class="SelectedOption"></select>
+                    <label class="control-label col-md-2 col-sm-2">APP類別</label>
+                    <div class="col-md-9 col-sm-9">
+                        <select id="Category" class="SelectedOption" multiple="multiple"></select>
                     </div>
                 </div>
 
                 <div id="Div_Rating" class="form-group">
-                    <label class="control-label col-md-2">平均評分</label>
-                    <div class="col-md-10">
-                        <select id="Rating" class="SelectedOption"></select>
+                    <label class="control-label col-md-2 col-sm-2">評分</label>
+                    <div class="col-md-9 col-sm-9">
+                        <div id="Rating" class="SelectedOption" style="float:left;display:inline;">
+                            <input />
+                            <input />
+                        </div>
+                        <ul id="NoRating" class="SelectedOption" style="margin-left:10px;display:inline;"></ul>
                     </div>
                 </div>
 
                 <div id="Div_RatingCount" class="form-group">
-                    <label class="control-label col-md-2">評分數量</label>
-                    <div class="col-md-10">
-                        <select id="RatingCount" class="SelectedOption"></select>
+                    <label class="control-label col-md-2 col-sm-2">評分數量</label>
+                    <div class="col-md-9 col-sm-9">
+                        <input id="MinRatingCount" class="SelectedOption" type="number" title="numeric" value="0" />
+                        ~
+                        <input id="MaxRatingCount" class="SelectedOption" type="number" title="numeric" value="0" />
                     </div>
                 </div>
 
                 <div id="Div_InstallsRange" class="form-group">
-                    <label class="control-label col-md-2">下載數量範圍</label>
-                    <div class="col-md-10">
+                    <label class="control-label col-md-2 col-sm-2">下載數量範圍</label>
+                    <div class="col-md-9 col-sm-9">
                         <select id="InstallsRange" class="SelectedOption"></select>
                     </div>
                 </div>
 
-                <div id="Div_InstallsCount" class="form-group">
-                    <label class="control-label col-md-2">下載數量</label>
-                    <div class="col-md-10">
-                        <select id="InstallsCount" class="SelectedOption"></select>
+                <!--<div id="Div_InstallsCount" class="form-group">
+                    <label class="control-label col-md-2 col-sm-2">下載數量</label>
+                    <div class="col-md-9 col-sm-9">
+                        <input id="MinInstallsCount" class="SelectedOption" type="number" title="numeric" value="0" />
+                        ~
+                        <input id="MaxInstallsCount" class="SelectedOption" type="number" title="numeric" value="0" />
                     </div>
-                </div>
+                </div>-->
 
                 <div id="Div_Free" class="form-group">
-                    <label for="Free" class="control-label col-md-2">APP是免費還是付費</label>
-                    <div class="col-md-10">
+                    <label for="Free" class="control-label col-md-2 col-sm-2">APP是免費還是付費</label>
+                    <div class="col-md-9 col-sm-9">
                         <ul id="Free" class="SelectedOption"></ul>
                     </div>
                 </div>
 
                 <div id="Div_Price" class="form-group">
-                    <label class="control-label col-md-2">APP價格</label>
-                    <div class="col-md-10">
+                    <label class="control-label col-md-2 col-sm-2">APP價格</label>
+                    <div class="col-md-9 col-sm-9">
                         <input id="MinPrice" class="SelectedOption" type="number" title="currency" value="0" />
+                        ~
                         <input id="MaxPrice" class="SelectedOption" type="number" title="currency" value="0" />
                     </div>
                 </div>
 
-                <div id="Div_Size" class="form-group">
-                    <label class="control-label col-md-2">APP檔案大小</label>
-                    <div class="col-md-10">
+                <!--<div id="Div_Size" class="form-group">
+                    <label class="control-label col-md-2 col-sm-2">APP檔案大小</label>
+                    <div class="col-md-9 col-sm-9">
                         <input id="MinSize" class="SelectedOption" type="number" title="numeric" value="0" />
                         <select id="MinSizeUnit" class="SelectedOption SizeUnit"></select>
                         ~
                         <input id="MaxSize" class="SelectedOption" type="number" title="numeric" value="0" />
                         <select id="MaxSizeUnit" class="SelectedOption SizeUnit"></select>
                     </div>
-                </div>
-
-                <div id="Div_MinAndroid" class="form-group">
-                    <label class="control-label col-md-2">最小支援安卓版本</label>
-                    <div class="col-md-10">
-                        <select id="MinAndroid" class="SelectedOption"></select>
-                    </div>
-                </div>
+                </div>-->
 
                 <div id="Div_DeveloperId" class="form-group">
-                    <label class="control-label col-md-2">開發者名稱</label>
-                    <div class="col-md-10">
+                    <label class="control-label col-md-2 col-sm-2">開發者名稱</label>
+                    <div class="col-md-9 col-sm-9">
                         <input id="DeveloperId" class="SelectedOption" type="text" value="" />
                     </div>
                 </div>
 
                 <div id="Div_Released" class="form-group">
-                    <label class="control-label col-md-2">APP發行日期</label>
-                    <div class="col-md-10">
-                        <select id="Released" class="SelectedOption"></select>
+                    <label class="control-label col-md-2 col-sm-2">APP發行日期</label>
+                    <div class="col-md-9 col-sm-9">
+                        <input id="MinReleased" class="SelectedOption" />
+                        ~
+                        <input id="MaxReleased" class="SelectedOption" />
                     </div>
                 </div>
 
                 <div id="Div_LastUpdated" class="form-group">
-                    <label class="control-label col-md-2">APP最後更新日期</label>
-                    <div class="col-md-10">
-                        <select id="LastUpdated" class="SelectedOption"></select>
+                    <label class="control-label col-md-2 col-sm-2">APP最後更新日期</label>
+                    <div class="col-md-9 col-sm-9">
+                        <input id="MinLastUpdated" class="SelectedOption" />
+                        ~
+                        <input id="MaxLastUpdated" class="SelectedOption" />
                     </div>
                 </div>
 
                 <div id="Div_ContentRating" class="form-group">
-                    <label class="control-label col-md-2">APP分級</label>
-                    <div class="col-md-10">
-                        <select id="ContentRating" class="SelectedOption"></select>
+                    <label class="control-label col-md-2 col-sm-2">APP分級</label>
+                    <div class="col-md-9 col-sm-9">
+                        <ul id="ContentRating" class="SelectedOption"></ul>
                     </div>
                 </div>
 
-                <div id="Div_AdSupported" class="form-group">
-                    <label class="control-label col-md-2">APP內是否有廣告</label>
-                    <div class="col-md-10">
+                <!--<div id="Div_AdSupported" class="form-group">
+                    <label class="control-label col-md-2 col-sm-2">APP內是否有廣告</label>
+                    <div class="col-md-9 col-sm-9">
                         <ul id="AdSupported" class="SelectedOption"></ul>
                     </div>
-                </div>
+                </div>-->
 
                 <div id="Div_InAppPurchases" class="form-group">
-                    <label class="control-label col-md-2">APP內是否有購買機制</label>
-                    <div class="col-md-10">
+                    <label class="control-label col-md-2 col-sm-2">APP內是否有購買機制</label>
+                    <div class="col-md-9 col-sm-9">
                         <ul id="InAppPurchases" class="SelectedOption"></ul>
                     </div>
                 </div>
 
                 <div id="Div_EditorChoice" class="form-group">
-                    <label class="control-label col-md-2">是否為編輯精選</label>
-                    <div class="col-md-10">
+                    <label class="control-label col-md-2 col-sm-2">是否為編輯精選</label>
+                    <div class="col-md-9 col-sm-9">
                         <ul id="EditorChoice" class="SelectedOption"></ul>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <div class="col-md-2">
+                    <div class="col-md-2 col-sm-2">
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-9">
                         <input type="button" id="Search" class="btn btn-info SelectedOption" value="查詢" />
                     </div>
                 </div>
             </div>
         </form>
+        <hr>
     </div>
 
     <!--AppGrid圖表區-->
     <div id="AppGrid" class="AppGrid Chart" style="margin-top:5px;">
     </div>
 
+    <!--第二個Grid圖表區-->
+    <div id="AppGrid2" class="AppGrid2 Chart" style="margin-top:5px;">
+    </div>
+
     <!--Chart1圖表區-->
     <!--<div style="width: 500px; height: 300px; position: absolute; right:50px; top:0px;margin-top:5px;">-->
     <div id="Chart1" class="Chart1 Chart" style="margin-top:5px;">
-        <p id="first" style="font-size:21px;"></p>
-        <canvas id="firstline_chart" class="Chart1 Chart" width="500" height="300"></canvas>
+        <canvas id="chart1" class="Chart1 Chart" width="700" height="450"></canvas>
     </div>
 
     <!--Chart2圖表區-->
     <div id="Chart2" class="Chart2 Chart" style="margin-top:5px;">
-        bbb
+        <canvas id="chart2" class="Chart2 Chart" width="700" height="450"></canvas>
     </div>
 
     <!--Chart3圖表區-->
     <div id="Chart3" class="Chart3 Chart" style="margin-top:5px;">
-        ccc
+        <canvas id="chart3" class="Chart3 Chart" width="700" height="450"></canvas>
     </div>
 
     <!--Chart4圖表區-->
     <div id="Chart4" class="Chart4 Chart" style="margin-top:5px;">
-        ddd
+        <div id="Chart4_1" class="Chart4 Chart col-md-6 col-sm-6" style="border-right: 1px black solid;border-bottom: 1px black solid;">
+            <canvas id="chart4_1" class="Chart4 Chart" width="700" height="450"></canvas>
+        </div>
+        <div id="Chart4_2" class="Chart4 Chart col-md-6 col-sm-6" style="border-bottom: 1px black solid;">
+            <canvas id="chart4_2" class="Chart4 Chart" width="700" height="450"></canvas>
+        </div>
+        <div id="Chart4_3" class="Chart4 Chart col-md-6 col-sm-6" style="border-right: 1px black solid;">
+            <canvas id="chart4_3" class="Chart4 Chart" width="700" height="450"></canvas>
+        </div>
+        <div id="Chart4_4" class="Chart4 Chart col-md-6 col-sm-6">
+            <canvas id="chart4_4" class="Chart4 Chart" width="700" height="450"></canvas>
+        </div>
     </div>
 
     <!--Chart5圖表區-->
     <div id="Chart5" class="Chart5 Chart" style="margin-top:5px;">
-        eee
+        <canvas id="chart5" class="Chart5 Chart" width="700" height="450"></canvas>
+    </div>
+
+    <!--Chart6圖表區-->
+    <div id="Chart6" class="Chart6 Chart" style="margin-top:5px;">
+        <canvas id="chart6" class="Chart6 Chart" width="700" height="450"></canvas>
     </div>
 
     <!--<div id="NotFind" style="color:red;text-align:center;">查無資料</div>-->
@@ -201,8 +229,8 @@
     <a href="/AppMarketingAnalysis/Index">回首頁</a>
 </div>
 
-<script src="~/Scripts/Index.js"></script>
 <!--圖表的js檔-->
-<script src="~/Scripts/firstline_chart.js"></script>
+
+<script src="~/Scripts/Index.js"></script>
 
 

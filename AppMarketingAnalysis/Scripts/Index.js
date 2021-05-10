@@ -1,4 +1,6 @@
-﻿document.write('<script src="/Scripts/chart1.js"></script>');
+﻿document.write('<script src="/Scripts/AppGrid.js"></script>');
+document.write('<script src="/Scripts/AppGrid2.js"></script>');
+document.write('<script src="/Scripts/chart1.js"></script>');
 document.write('<script src="/Scripts/chart2.js"></script>');
 document.write('<script src="/Scripts/chart3.js"></script>');
 document.write('<script src="/Scripts/chart4_1.js"></script>');
@@ -38,35 +40,35 @@ var TableList = [
         Table: "Chart1", TableName: "圖表一",
         TableIntroduction: "哪些類別會得到更多評價<br>" + "可能使app更容易被看見<br>" +
             "有更高的成長率<br>" + "顯示類別的平均評價<br>" + "可能代表未來app完成後的成功率<br>",
-        SelectedOpt: ["InstallsRange", "Free", "", ""]
+        SelectedOpt: ["Category", "RatingCount", "Price", "InstallsRange", "Free"]
     },
     {
         Table: "Chart2", TableName: "圖表二",
         TableIntroduction: "哪些類別平均下載量多<br>" + "可以看出競爭激烈的程度<br>" +
             "列出類別會有多少的開發商，了解競爭對手數量<br>",
-        SelectedOpt: ["Category", "Rating", "", "", ""]
+        SelectedOpt: ["Category", "RatingCount", "Price", "InstallsRange", "Free"]
     },
     {
         Table: "Chart3", TableName: "圖表三",
         TableIntroduction: "哪些類別會得到更多評價<br>" + "可能使app更容易被看見<br>" +
             "有更高的成長率<br>" + "顯示類別的平均評價<br>" + "可能代表未來app完成後的成功率<br>",
-        SelectedOpt: ["RatingCount", "InstallsRange", "", "", ""]
+        SelectedOpt: ["Category", "InstallsRange", "Price", "Free"]
     },
     {
         Table: "Chart4", TableName: "圖表四",
         TableIntroduction: "哪些類別會得到更多評價<br>" + "可能使app更容易被看見<br>" +
             "有更高的成長率<br>" + "顯示類別的平均評價<br>" + "可能代表未來app完成後的成功率<br>",
-        SelectedOpt: ["Price", "Released", "", "", ""]
+        SelectedOpt: ["Category", "InstallsRange", "Price", "RatingCount"]
     },
     {
         Table: "Chart5", TableName: "圖表五",
         TableIntroduction: "哪些種類app有內部購買<br>" + "可讓開發者把較大的商機種類納為一個開發app的考量因素<br>",
-        SelectedOpt: ["Category", "InstallsRange", "Free", "Price", ""]
+        SelectedOpt: ["Category", "InstallsRange", "Free", "Price", "Released"]
     },
     {
         Table: "Chart6", TableName: "圖表六",
         TableIntroduction: "哪些種類app有內部購買<br>" + "可讓開發者把較大的商機種類納為一個開發app的考量因素<br>",
-        SelectedOpt: ["Category", "InstallsRange", "Free", "Price", ""]
+        SelectedOpt: ["Category", "InstallsRange","Price"]
     }
 ];
 
@@ -166,7 +168,7 @@ $(document).ready(function () {
         });
     }
 
-    var DDL = ["InstallsRange"];     //下拉選單清單
+    var DDL = ["MinInstallsRange", "MaxInstallsRange"];     //下拉選單清單
     for (var b = 0; b < DDL.length; b++) {
         $("#" + DDL[b]).kendoDropDownList({
             dataTextField: "Text",
@@ -359,12 +361,9 @@ function SelectedTable(table) {
             } else if ($("#Btn_Chart3").is(".beChosed")) {
                 GetChart3();
             } else if ($("#Btn_Chart4").is(".beChosed")) {
-                GetChart4_1();
-                GetChart4_2();
                 GetChart4_3();
                 GetChart4_4();
                 GetChart4_5();
-                GetChart4_6();
             } else if ($("#Btn_Chart5").is(".beChosed")) {
                 GetChart5();
             } else if ($("#Btn_Chart6").is(".beChosed")) {
@@ -392,7 +391,8 @@ $("#Search").click(function () {
         NO_RATING: $("#Div_Rating:visible") ? $("#NoRating").getKendoCheckBoxGroup().value() : "",   //array
         MIN_RATING_COUNT: $("#Div_RatingCount:visible") ? $("#MinRatingCount").data("kendoNumericTextBox").value() : "",    //int
         MAX_RATING_COUNT: $("#Div_RatingCount:visible") ? $("#MaxRatingCount").data("kendoNumericTextBox").value() : "",    //int
-        INSTALLS_RANGE: $("#Div_InstallsRange:visible") ? $("#InstallsRange").data("kendoDropDownList").value() : "",   //string
+        MIN_INSTALLS_RANGE: $("#Div_InstallsRange:visible") ? $("#MinInstallsRange").data("kendoDropDownList").value() : "",   //string
+        MAX_INSTALLS_RANGE: $("#Div_InstallsRange:visible") ? $("#MaxInstallsRange").data("kendoDropDownList").value() : "",   //string
         //MIN_INSTALLS_COUNT: $("#Div_InstallsCount:visible") ? $("#MinInstallsCount").data("kendoNumericTextBox").value() : "",
         //MAX_INSTALLS_COUNT: $("#Div_InstallsCount:visible") ? $("#MaxInstallsCount").data("kendoNumericTextBox").value() : "",
         FREE: $("#Div_Free:visible") ? $("#Free").getKendoCheckBoxGroup().value() : "",   //array

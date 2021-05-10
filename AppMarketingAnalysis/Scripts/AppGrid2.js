@@ -14,7 +14,7 @@
         columns: [
             { field: "AppName", title: "APP名稱", width: "16.66%" },
             { field: "Category", title: "APP類別", width: "16.66%" },
-            { field: "Rating", title: "平均評分", width: "16.66%" },
+            { field: "Rating", title: "評分", width: "16.66%" },
             { field: "RatingCount", title: "評分數量", width: "16.66%" },
             { field: "InstallsRange", title: "平均下載範圍", width: "16.66%" },
             { field: "Free", title: "APP是免費還是付費", width: "16.66%" },

@@ -43,6 +43,14 @@ namespace AppMarketingAnalysis.Model
         [DisplayName("下載數量範圍")]
         public string INSTALLS_RANGE { get; set; }
 
+        //篩選最小下載數量範圍(前端)
+        [DisplayName("下載數量範圍")]
+        public string MIN_INSTALLS_RANGE { get; set; }
+
+        //篩選最大下載數量範圍(前端)
+        [DisplayName("下載數量範圍")]
+        public string MAX_INSTALLS_RANGE { get; set; }
+
         //下載數量
         [DisplayName("下載數量")]
         public int INSTALLS_COUNT { get; set; }

@@ -70,7 +70,7 @@ function GetChart4_6() {
     for (var i = 0, len = count1_pay.length; i < len; i++) {
         avgmaximumInstalls_pay.push((parseFloat(summaximumInstalls_pay[i]) / parseFloat(count1_pay[i])).toFixed(0));
         avgratingcount_pay.push((parseFloat(sumratingcount_pay[i]) / parseFloat(count2_pay[i])).toFixed(0));
-        avgprice.push((parseFloat(sumprice[i]) / parseFloat(count3_pay[i])).toFixed(0));
+        avgprice.push((parseFloat(sumprice[i]) / parseFloat(count3_pay[i])).toFixed(2));
     }
 
     var outputStr = "---notrepeat:" + result + "<br> repeat: " + repeat

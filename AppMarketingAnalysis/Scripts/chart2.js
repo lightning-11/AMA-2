@@ -1,4 +1,4 @@
-function GetChart2() {
+function GetChart2(searchResult) {
     // -----------------------------------------計算x、y軸值--------------------------------------------
     var list = [
         { "category": "Strategy", "ratingcount": "17297" },//3

@@ -152,12 +152,12 @@ namespace AppMarketingAnalysis.Dao
             return this.MapDropDownListData(dt);
         }
 
-        /// <summary>
-        /// Maping 代碼資料
-        /// </summary>
-        /// <param name="dt"></param>
-        /// <returns></returns>
-        private List<SelectListItem> MapDropDownListData(DataTable dt)
+/// <summary>
+/// Maping 代碼資料
+/// </summary>
+/// <param name="dt"></param>
+/// <returns></returns>
+private List<SelectListItem> MapDropDownListData(DataTable dt)
         {
             List<SelectListItem> result = new List<SelectListItem>();
             foreach (DataRow row in dt.Rows)

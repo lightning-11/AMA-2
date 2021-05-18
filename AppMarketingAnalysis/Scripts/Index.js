@@ -1,5 +1,4 @@
 ﻿document.write('<script src="/Scripts/AppGrid.js"></script>');
-document.write('<script src="/Scripts/AppGrid2.js"></script>');
 document.write('<script src="/Scripts/chart1.js"></script>');
 document.write('<script src="/Scripts/chart2.js"></script>');
 document.write('<script src="/Scripts/chart3.js"></script>');
@@ -25,55 +24,47 @@ var TableList = [
         Table: "AppGrid", TableName: "表格",
         TableIntroduction: "aaa",
         SelectedOpt: ["AppName", "Category", "Rating",
-            "RatingCount", "InstallsRange", "Free",
-            "Free", "Price", "DeveloperId", "Released",
-            "Released", "LastUpdated", "ContentRating",
-            "InAppPurchases", "EditorChoice"]
-    },
-    {
-        Table: "AppGrid2", TableName: "第二個表格",
-        TableIntroduction: "bbb",
-        SelectedOpt: ["AppName", "Category", "Rating",
             "RatingCount", "InstallsRange", "Free"]
     },
     {
         Table: "Chart1", TableName: "圖表一",
-        TableIntroduction: "哪些類別會得到更多評價<br>" + "可能使app更容易被看見<br>" +
-            "有更高的成長率<br>" + "顯示類別的平均評價<br>" + "可能代表未來app完成後的成功率<br>",
+        TableIntroduction: "透過平均評分分數來來表示未來各類別app成功率的比較，幫助開發者找到較容易成功的類別<br>" +
+            "並透過顯示付費及免費app的平均評分分數，讓開發者思考免費及付費app可能帶來的成功率的差異<br>",
         SelectedOpt: ["Category", "RatingCount", "Price", "InstallsRange", "Free"]
     },
     {
         Table: "Chart2", TableName: "圖表二",
-        TableIntroduction: "哪些類別平均下載量多<br>" + "可以看出競爭激烈的程度<br>" +
-            "列出類別會有多少的開發商，了解競爭對手數量<br>",
+        TableIntroduction: "透過展現每一類別的評論數量，幫助開發者選擇較容易受到關注的類別，使開發完後的app能成為評論及更新互相正向影響的app<br>",
         SelectedOpt: ["Category", "RatingCount", "Price", "InstallsRange", "Free"]
     },
     {
         Table: "Chart3", TableName: "圖表三",
-        TableIntroduction: "哪些類別會得到更多評價<br>" + "可能使app更容易被看見<br>" +
-            "有更高的成長率<br>" + "顯示類別的平均評價<br>" + "可能代表未來app完成後的成功率<br>",
+        TableIntroduction: "幫助開發者能夠了解各類別的競爭程度與競爭對手的數量<br>" +
+            "根據平均下載量可以看出哪些類別競爭程度較高，是否要進入競爭激烈的市場發展獨特的商品，還是進入進錚程度較低的市場，補足市場缺口，成為此市場中的佼佼者<br>" +
+            "而展現競爭對手的數量能讓開發者理解現有市場的競爭者，思考是否在未來的市場中能夠有一席之地<br>",
         SelectedOpt: ["Category", "InstallsRange", "Price", "Free"]
     },
     {
         Table: "Chart4", TableName: "圖表四",
-        TableIntroduction: "哪些類別會得到更多評價<br>" + "可能使app更容易被看見<br>" +
-            "有更高的成長率<br>" + "顯示類別的平均評價<br>" + "可能代表未來app完成後的成功率<br>",
+        TableIntroduction: "幫助APP開發者從營利取向角度來看哪些種類的APP討論熱度高且民眾付費使用意願高，較能賺錢<br>" +
+            "根據平均評分數量可以看出討論熱度，下載量可以看出民眾的接受度，加上付費APP的平均價格後可以得知APP大概要設定在多少價錢大家會接受，可以盈利<br>",
         SelectedOpt: ["Category", "InstallsRange", "Price", "RatingCount"]
     },
     {
         Table: "Chart5", TableName: "圖表五",
-        TableIntroduction: "哪些種類app有內部購買<br>" + "可讓開發者把較大的商機種類納為一個開發app的考量因素<br>",
+        TableIntroduction: "幫助APP開發者得知競爭激烈程度，列出各類別每年分別有多少發行數量，除了了解同業競爭對手的數量，也可以了解各類別近年趨勢<br>" +
+            "在開發APP前可以思考一下此類型APP值不值得開發，評估是否有機會超越業界龍頭廠商<br>",
         SelectedOpt: ["Category", "InstallsRange", "Free", "Price", "Released"]
     },
     {
         Table: "Chart6", TableName: "圖表六",
-        TableIntroduction: "哪些種類app有內部購買<br>" + "可讓開發者把較大的商機種類納為一個開發app的考量因素<br>",
+        TableIntroduction: "透過列出免費APP和付費APP的平均下載量，可讓開發者把較大商機的種類納為一個APP的開發考量因素<br>",
         SelectedOpt: ["Category", "InstallsRange","Price"]
     }
 ];
 
 $(document).ready(function () {
-    function Released_StartChange() {
+    /*function Released_StartChange() {
         var startDate = Released_Start.value(),
             endDate = Released_End.value();
 
@@ -137,7 +128,7 @@ $(document).ready(function () {
             LastUpdated_End.min(endDate);
         }
     }
-    /************ 範例Start ***********/
+
     var SU = ["MinSizeUnit", "MaxSizeUnit"];     //下拉選單清單
     for (var su_v = 0; su_v < SU.length; su_v++) {
         $("#" + SU[su_v]).kendoDropDownList({
@@ -232,10 +223,6 @@ $(document).ready(function () {
             labelPosition: "after",
             value: ["True", "False"]
         }).data("kendoCheckBoxGroup");
-        /*
-        var CBC = $("#" + CB[c]).getKendoCheckBoxGroup();
-        CBC.value(["True", "False"]);
-        alert(CB[c] + ", " + CBC.value());*/
     }
 
     var CB2 = ["ContentRating"]
@@ -299,8 +286,7 @@ $(document).ready(function () {
         labelPosition: "after",
         value: [-1]
     }).data("kendoCheckBoxGroup");
-
-    /************ 範例End ***********/
+    */
 
     //一開始先隱藏圖表區塊與篩選條件區塊
     for (var i = 0; i < TableList.length; i++) {
@@ -322,6 +308,7 @@ $("#Btn_SelectedOption").click(function () {
     }
 });
 
+//圖表簡介
 function Zoom_Chart_Introduction() {
     if ($("#Chart_Introduction").is(":visible")) {
         $("#Btn_Chart_Introduction").html("圖<br>表<br>簡<br>介<br>&#8617");
@@ -353,23 +340,6 @@ function SelectedTable(table) {
                     $("#Div_" + SelectedOpt[j]).hide();
                 }
             }
-            ///
-            if ($("#Btn_Chart1").is(".beChosed")) {
-                GetChart1();
-            } else if ($("#Btn_Chart2").is(".beChosed")) {
-                GetChart2();
-            } else if ($("#Btn_Chart3").is(".beChosed")) {
-                GetChart3();
-            } else if ($("#Btn_Chart4").is(".beChosed")) {
-                GetChart4_3();
-                GetChart4_4();
-                GetChart4_5();
-            } else if ($("#Btn_Chart5").is(".beChosed")) {
-                GetChart5();
-            } else if ($("#Btn_Chart6").is(".beChosed")) {
-                GetChart6();
-            }
-            ///
         } else {
             $("#" + TableList[i].Table).hide();
         }
@@ -410,47 +380,26 @@ $("#Search").click(function () {
         IN_APP_PURCHASES: $("#Div_InAppPurchases:visible") ? $("#InAppPurchases").getKendoCheckBoxGroup().value() : "",   //array
         EDITOR_CHOICE: $("#Div_EditorChoice:visible") ? $("#EditorChoice").getKendoCheckBoxGroup().value() : "",   //array
     };
+
+    //換到所選取的TABLE
     for (var z = 0; z < TableList.length; z++) {
         if ($("#Btn_" + TableList[0].Table).is(".beChosed")) {
             target = TableList[0].Table;
         }
     }
-    /*
-    console.log(target + "******APP_NAME*****" + amad.APP_NAME + "*****CATEGORY******" +
-        amad.CATEGORY + "*****RATING******" +
-        amad.RATING + "*****MIN_RATING_COUNT******" +
-        amad.MIN_RATING_COUNT + "******MAX_RATING_COUNT*****" +
-        amad.MAX_RATING_COUNT + "*****INSTALLS_RANGE******" +
-        amad.INSTALLS_RANGE + "***MIN_INSTALLS_COUNT********" +
-        amad.MIN_INSTALLS_COUNT + "******MAX_INSTALLS_COUNT*****" +
-        amad.MAX_INSTALLS_COUNT + "****FREE*******" +
-        amad.FREE + "*****MIN_PRICE******" +
-        amad.MIN_PRICE + "******MAX_PRICE*****" +
-        amad.MAX_PRICE + "*****MIN_SIZE******" +
-        amad.MIN_SIZE + "****MAX_SIZE*******" +
-        amad.MAX_SIZE + "*****DEVELOPER_ID******" +
-        amad.DEVELOPER_ID + "*****MIN_RELEASED******" +
-        amad.MIN_RELEASED + "*****MAX_RELEASED******" +
-        amad.MAX_RELEASED + "****MIN_LAST_UPDATED*******" +
-        amad.MIN_LAST_UPDATED + "*****MAX_LAST_UPDATED******" +
-        amad.MAX_LAST_UPDATED + "*****CONTENT_RATING******" +
-        amad.CONTENT_RATING + "*****AD_SUPPORTED******" +
-        amad.AD_SUPPORTED + "*****IN_APP_PURCHASES******" +
-        amad.IN_APP_PURCHASES + "*****EDITOR_CHOICE******" +
-        amad.EDITOR_CHOICE
-    );*/
     
     $.ajax({
         url: "/AppMarketingAnalysis/GetAppSearch",
         dataType: "json",
-        data: { amad, target },    //將此資料傳入Models.AppMarketingAnalysisData
+        data: {
+            amad: amad,
+            target: target
+        },    //將此資料傳入Models.AppMarketingAnalysisData
         type: "post",
     }).done(function (searchResult) {
         //有新增表格或表格名稱變動這裡要記得更改
         if ($("#Btn_AppGrid").is(".beChosed")) {
             GetAppGrid(searchResult);
-        } else if ($("#Btn_AppGrid2").is(".beChosed")) {
-            GetAppGrid2(searchResult);
         } else if ($("#Btn_Chart1").is(".beChosed")) {
             GetChart1(searchResult);
         } else if ($("#Btn_Chart2").is(".beChosed")) {

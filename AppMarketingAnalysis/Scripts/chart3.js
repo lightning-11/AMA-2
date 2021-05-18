@@ -1,4 +1,4 @@
-function GetChart3() {
+function GetChart3(searchResult) {
     // -----------------------------------------計算x、y軸值--------------------------------------------
     var list = [
         { "category": "Strategy", "installs": "1,000,000+", "developerId": "Skizze Games" },//3

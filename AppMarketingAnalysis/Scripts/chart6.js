@@ -1,4 +1,4 @@
-function GetChart6() {
+function GetChart6(searchResult) {
     var list = [
         { "category": "Strategy", "free": "true", "install": "17297" },//3
         { "category": "Communication", "free": "false", "install": "2848" },//2

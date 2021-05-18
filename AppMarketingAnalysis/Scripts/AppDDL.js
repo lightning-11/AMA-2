@@ -1,103 +1,5 @@
 ﻿$(document).ready(function () {
-    //產生TextBox (AppName, DeveloperId)
-    var TB = ["AppName", "DeveloperId"];     //TextBox清單
-    //產生AutoComplete
-    for (var tb_v = 0; tb_v < TB.length; tb_v++) {
-        $("#" + TB[tb_v]).kendoAutoComplete({
-            dataSource: {
-                transport: {
-                    read: {
-                        url: "/AppMarketingAnalysis/AutoCompleteData",
-                        type: "post",
-                        dataType: "json",
-                        data: TB[tb_v]
-                    }
-                }
-            },
-            filter: "startswith",
-            autoWidth: true,
-            height: 100,
-        });
-    }
-
-    //產生下拉選單 (InstallsRange)
-    var DDL = ["InstallsRange"];     //下拉選單清單
-    for (var ddl_v = 0; ddl_v < DDL.length; ddl_v++) {
-        $("#" + DDL[ddl_v]).kendoDropDownList({
-            dataTextField: "Text",
-            dataValueField: "Value",
-            dataSource: {
-                transport: {
-                    read: {
-                        url: "/AppMarketingAnalysis/GetDropDownListClassData",  //要加controller的位置
-                        type: "post",
-                        dataType: "json",
-                        data: DDL[ddl_v]
-                    }
-                }
-            },
-            filter: "startswith",
-            optionLabel: '請選擇',
-            autoWidth: true,
-        });
-    }
-
-    //產生MultiSelect (Category)
-    var MS = ["Category"];     //MultiSelect清單
-    for (var ms_v = 0; ms_v < MS.length; ms_v++) {
-        $("#" + MS[ms_v]).kendoMultiSelect({
-            placeholder: "Select Category...",
-            autoClose: false,
-            dataTextField: "Text",
-            dataValueField: "Value",
-            dataSource: {
-                transport: {
-                    read: {
-                        url: "/AppMarketingAnalysis/GetDropDownListClassData",  //要加controller的位置
-                        type: "post",
-                        dataType: "json",
-                        data: MS[ms_v]
-                    }
-                }
-            },
-        });
-    }
-
-    //產生CheckBox (Free,ContentRating(+圖), AdSupported, InAppPurchases, EditorChoice)
-    var CB = ["Free", "ContentRating", "AdSupported", "InAppPurchases", "EditorChoice"];     //CheckBox清單
-    for (var cb_v = 0; cb_v < CB.length; cb_v++) {
-        $("#" + CB[cb_v]).kendoCheckBoxGroup({
-            items: ["True", "False"],
-            layout: "horizontal",
-            labelPosition: "after",
-            value: ["True", "False"]
-        }).data("kendoCheckBoxGroup");
-    }
-
-    //產生RangeSlider (Rating, RatingCount)
-    var SD = ["Rating"];     //RangeSlider清單
-    for (var sd_v = 0; sd_v < SD.length; sd_v++) {
-        $("#" + SD[sd_v]).kendoRangeSlider({
-            min: 0,
-            max: 5, 
-            smallStep: 0.5,
-            largeStep: 0.5,
-        }).data("kendoRangeSlider");
-    }
-
-    //產生DateRangePicker (Released, LastUpdated)
-    /*var DRP = ["Released", "LastUpdated"];     //DateRangePicker清單
-    for (var drp_v = 0; drp_v < DRP.length; drp_v++) {
-        $("#" + DRP[drp_v]).kendoDateRangePicker({
-            format: "yyyy/MM/dd",
-            range: {
-                start: new Date(1998, 9, 27),
-                end: new Date()
-            },
-        }).data("kendoDatePicker");
-    }*/
-
-    //DatePicker
+    ////****日期變化--START****////
     function Released_StartChange() {
         var startDate = Released_Start.value(),
             endDate = Released_End.value();
@@ -162,7 +64,63 @@
             LastUpdated_End.min(endDate);
         }
     }
+    ////****日期變化--END****////
 
+    //產生TextBox (AppName, DeveloperId)
+    var TB = ["AppName", "DeveloperId"];     //TextBox清單
+    //產生AutoComplete
+    for (var tb_v = 0; tb_v < TB.length; tb_v++) {
+        $("#" + TB[tb_v]).kendoAutoComplete({
+            dataSource: {
+                transport: {
+                    read: {
+                        url: "/AppMarketingAnalysis/AutoCompleteData",
+                        type: "post",
+                        dataType: "json",
+                        data: { target: TB[tb_v] }
+                    }
+                }
+            },
+            filter: "startswith",
+            autoWidth: true,
+            height: 100,
+        });
+    }
+
+    //產生MultiSelect (Category)
+    var MS = ["Category"];     //MultiSelect清單
+    for (var ms_v = 0; ms_v < MS.length; ms_v++) {
+        $("#" + MS[ms_v]).kendoMultiSelect({
+            placeholder: "Select Category...",
+            autoClose: false,
+            dataTextField: "Text",
+            dataValueField: "Value",
+            dataSource: {
+                transport: {
+                    read: {
+                        url: "/AppMarketingAnalysis/GetDropDownListClassData",  //要加controller的位置
+                        type: "post",
+                        dataType: "json",
+                        data: { target: MS[ms_v] }
+                    }
+                }
+            },
+        });
+    }
+
+    //產生DateRangePicker (Released, LastUpdated)
+    /*var DRP = ["Released", "LastUpdated"];     //DateRangePicker清單
+    for (var drp_v = 0; drp_v < DRP.length; drp_v++) {
+        $("#" + DRP[drp_v]).kendoDateRangePicker({
+            format: "yyyy/MM/dd",
+            range: {
+                start: new Date(1998, 9, 27),
+                end: new Date()
+            },
+        }).data("kendoDatePicker");
+    }*/
+
+    //DatePicker
     var Released_Start = $("#MinReleased").kendoDatePicker({
         format: "yyyy/MM/dd",
         value: new Date("1998/01/01"),
@@ -210,7 +168,33 @@
         });
     }
 
-    //產生NumericTextBox (Price, Size)
+    //產生下拉選單 (InstallsRange)
+    var MIR = ["MinInstallsRange", "MaxInstallsRange"];     //下拉選單清單
+    var MIR_List = [
+        { Text: "0", Value: "0+" },
+        { Text: "1", Value: "1+" },
+        { Text: "10", Value: "10+" },
+        { Text: "100", Value: "100+" },
+        { Text: "1,000", Value: "1,000+" },
+        { Text: "10,000", Value: "10,000+" },
+        { Text: "100,000", Value: "100,000+" },
+        { Text: "1,000,000", Value: "1,000,000+" },
+        { Text: "10,000,000", Value: "10,000,000+" },
+        { Text: "100,000,000", Value: "100,000,000+" },
+        { Text: "1,000,000,000", Value: "1,000,000,000+" },
+    ]
+    for (var b = 0; b < MIR.length; b++) {
+        $("#" + MIR[b]).kendoDropDownList({
+            dataTextField: "Text",
+            dataValueField: "Value",
+            dataSource: MIR_List,
+            filter: "startswith",
+            optionLabel: '請選擇',
+            autoWidth: true,
+        });
+    }
+
+    //產生NumericTextBox (Price)
     var NTB_MP = ["MinPrice", "MaxPrice"];
     for (var ntb_mp_v = 0; ntb_mp_v < NTB_MP.length; ntb_mp_v++) {
         $("#" + NTB_MP[ntb_mp_v]).kendoNumericTextBox({
@@ -221,6 +205,7 @@
         });
     }
 
+    //產生NumericTextBox (Size)
     var NTB_MS = ["MinSize", "MaxSize"];
     for (var ntb_ms_v = 0; ntb_ms_v < NTB_MS.length; ntb_ms_v++) {
         $("#" + NTB_MS[ntb_ms_v]).kendoNumericTextBox({
@@ -231,6 +216,7 @@
         });
     }
 
+    //產生NumericTextBox (RatingCount)
     var NTB_MRC = ["MinRatingCount", "MaxRatingCount"];
     for (var ntb_mrc_v = 0; ntb_mrc_v < NTB_MRC.length; ntb_mrc_v++) {
         $("#" + NTB_MRC[ntb_mrc_v]).kendoNumericTextBox({
@@ -239,8 +225,9 @@
             decimals: 0,
             step: 1,
         });
-    }
+    } 
 
+    //產生NumericTextBox (InstallsCount)
     var NTB_MIC = ["MinInstallsCount", "MaxInstallsCount"];
     for (var ntb_mic_v = 0; ntb_mic_v < NTB_MIC.length; ntb_mic_v++) {
         $("#" + NTB_MIC[ntb_mic_v]).kendoNumericTextBox({
@@ -249,6 +236,43 @@
             decimals: 0,
             step: 1,
         });
+    }
+
+    //產生CheckBox (Free, AdSupported, InAppPurchases, EditorChoice)
+    var CB = ["Free", "AdSupported", "InAppPurchases", "EditorChoice"];     //CheckBox清單
+    for (var cb_v = 0; cb_v < CB.length; cb_v++) {
+        $("#" + CB[cb_v]).kendoCheckBoxGroup({
+            items: ["True", "False"],
+            layout: "horizontal",
+            labelPosition: "after",
+            value: ["True", "False"]
+        }).data("kendoCheckBoxGroup");
+    }
+
+    var CB2 = ["ContentRating"]
+    for (var cb2_v = 0; cb2_v < CB2.length; cb2_v++) {
+        $("#" + CB2[cb2_v]).kendoCheckBoxGroup({
+            items: [{ label: "未分級", value: "Unrated" },
+            { label: "所有人", value: "Everyone" },
+            { label: "10歲以上", value: "Everyone 10+" },
+            { label: "13歲以上", value: "Teen" },
+            { label: "17歲以上", value: "Mature 17+" },
+            { label: "18歲以上", value: "Adults only 18+" }],
+            layout: "horizontal",
+            labelPosition: "after",
+            value: ["Unrated", "Everyone", "Everyone 10+", "Teen", "Mature 17+", "Adults only 18+"],
+        }).data("kendoCheckBoxGroup");
+    }
+
+    //產生RangeSlider (Rating, RatingCount)
+    var SD = ["Rating"];     //Slider清單
+    for (var sd_v = 0; sd_v < SD.length; sd_v++) {
+        $("#" + SD[sd_v]).kendoRangeSlider({
+            min: 0,
+            max: 5,
+            smallStep: 0.5,
+            largeStep: 0.5,
+        }).data("kendoRangeSlider");
     }
 
     $("#NoRating").kendoCheckBoxGroup({

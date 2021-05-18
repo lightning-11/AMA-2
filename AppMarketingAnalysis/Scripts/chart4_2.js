@@ -1,4 +1,4 @@
-function GetChart4_2() {
+function GetChart4_2(searchResult) {
     // -----------------------------------------計算x、y軸值--------------------------------------------
     var list = [
         { "category": "Strategy", "maximumInstalls": "2161778", "ratingcount": "17297" },//3

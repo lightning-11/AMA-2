@@ -1,4 +1,4 @@
-function GetChart5() {
+function GetChart5(searchResult) {
     // -----------------------------------------計算x、y軸值--------------------------------------------
     var list = [
         { "category": "Strategy", "Released": "2018/7/19" },//3

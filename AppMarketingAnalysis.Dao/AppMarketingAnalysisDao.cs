@@ -81,10 +81,6 @@ namespace AppMarketingAnalysis.Dao
                     conn.Close();
                 }
             }
-            else if (target == "AppGrid2")
-            {
-
-            }
             else if (target == "Chart1")
             {
 

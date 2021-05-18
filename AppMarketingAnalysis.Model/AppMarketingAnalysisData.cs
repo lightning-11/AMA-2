@@ -21,7 +21,7 @@ namespace AppMarketingAnalysis.Model
 
         //APP分類
         [DisplayName("APP分類")]
-        public string CATEGORY { get; set; }
+        public string[] CATEGORY { get; set; }
 
         //平均評分
         [DisplayName("評分")]

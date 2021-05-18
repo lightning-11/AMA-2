@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using AppMarketingAnalysis.Service;
 using AppMarketingAnalysis.Model;
+using Newtonsoft.Json;
 
 namespace AppMarketingAnalysis.Controllers
 {
@@ -36,10 +37,11 @@ namespace AppMarketingAnalysis.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult AutoCompleteData(string target)
+        public ActionResult AutoCompleteData(string target)
         {
             var AutoCompleteData = AppMarketingAnalysisService.GetAutoCompleteData(target); //拿取APP_NAME資料
-            return Json(AutoCompleteData);
+            //return Json(AutoCompleteData); 
+            return Content(JsonConvert.SerializeObject(AutoCompleteData), "application/json");
         }
 
         /// <summary>

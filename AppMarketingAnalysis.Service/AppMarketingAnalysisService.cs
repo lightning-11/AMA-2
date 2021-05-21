@@ -18,7 +18,7 @@ namespace AppMarketingAnalysis.Service
         }
 
         //依照搜尋條件取得App資料
-        public List<AppMarketingAnalysis.Model.AppMarketingAnalysisData> GetAppSearch(AppMarketingAnalysis.Model.AppMarketingAnalysisData amad, string target)
+        public List<Model.StringResult> GetAppSearch(AppMarketingAnalysis.Model.AppMarketingAnalysisData amad, string target)
         {
             return AppMarketingAnalysisDao.GetAppSearch(amad, target);
         }

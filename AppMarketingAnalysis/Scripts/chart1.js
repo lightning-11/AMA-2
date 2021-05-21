@@ -1,23 +1,23 @@
 function GetChart1(searchResult) {
     // -----------------------------------------計算x、y軸值--------------------------------------------
-    var list = [
-        { "category": "Strategy", "rating": "4.3" },//3
-        { "category": "Communication", "rating": "3.6" },//2
-        { "category": "Educational", "rating": "4.1" },//10
-        { "category": "Tools", "rating": "4.3" },//4
-        { "category": "Educational", "rating": "4" },//9
-        { "category": "Straegy", "rating": "4.3" },//3
-        { "category": "Comunication", "rating": "3.6" },//2
-        { "category": "Edcational", "rating": "4.1" },//10
-        { "category": "Tols", "rating": "4.3" },//4
-        { "category": "ducational", "rating": "4" },//9
-        { "category": "Strateg", "rating": "4.3" },//3
-        { "category": "Communicaton", "rating": "3.6" },//2
-        { "category": "Educationl", "rating": "4.1" },//10
-        { "category": "Tool", "rating": "4.3" },//4
-        { "category": "Educatioal", "rating": "4" },//9
-    ]
-
+    //var list = [
+    //    { "category": "Strategy", "rating": "4.3" },//3
+    //    { "category": "Communication", "rating": "3.6" },//2
+    //    { "category": "Educational", "rating": "4.1" },//10
+    //    { "category": "Tools", "rating": "4.3" },//4
+    //    { "category": "Educational", "rating": "4" },//9
+    //    { "category": "Straegy", "rating": "4.3" },//3
+    //    { "category": "Comunication", "rating": "3.6" },//2
+    //    { "category": "Edcational", "rating": "4.1" },//10
+    //    { "category": "Tols", "rating": "4.3" },//4
+    //    { "category": "ducational", "rating": "4" },//9
+    //    { "category": "Strateg", "rating": "4.3" },//3
+    //    { "category": "Communicaton", "rating": "3.6" },//2
+    //    { "category": "Educationl", "rating": "4.1" },//10
+    //    { "category": "Tool", "rating": "4.3" },//4
+    //    { "category": "Educatioal", "rating": "4" },//9
+    //]
+    var list = searchResult;
 
     var result = [];
     var repeat = [];

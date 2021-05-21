@@ -383,8 +383,8 @@ $("#Search").click(function () {
 
     //換到所選取的TABLE
     for (var z = 0; z < TableList.length; z++) {
-        if ($("#Btn_" + TableList[0].Table).is(".beChosed")) {
-            target = TableList[0].Table;
+        if ($("#Btn_" + TableList[z].Table).is(".beChosed")) {
+            target = TableList[z].Table;
         }
     }
     
@@ -407,10 +407,9 @@ $("#Search").click(function () {
         } else if ($("#Btn_Chart3").is(".beChosed")) {
             GetChart3(searchResult);
         } else if ($("#Btn_Chart4").is(".beChosed")) {
-            GetChart4_1(searchResult);
-            GetChart4_2(searchResult);
             GetChart4_3(searchResult);
             GetChart4_4(searchResult);
+            GetChart4_5(searchResult);
         } else if ($("#Btn_Chart5").is(".beChosed")) {
             GetChart5(searchResult);
         } else if ($("#Btn_Chart6").is(".beChosed")) {

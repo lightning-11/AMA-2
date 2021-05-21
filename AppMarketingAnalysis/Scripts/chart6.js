@@ -1,26 +1,27 @@
 function GetChart6(searchResult) {
-    var list = [
-        { "category": "Strategy", "free": "true", "install": "17297" },//3
-        { "category": "Communication", "free": "false", "install": "2848" },//2
-        { "category": "Educational", "free": "true", "install": "10990" },//10
-        { "category": "Tools", "free": "false", "install": "488639" },//4
-        { "category": "Strategy", "free": "false", "install": "12997" },//3
-        { "category": "Communication", "free": "true", "install": "28848" },//2
-        { "category": "Educational", "free": "false", "install": "19690" },//10
-        { "category": "Tools", "free": "true", "install": "48039" },//4
-        { "category": "Educational", "free": "true", "install": "44700" },//9
-        { "category": "Educational", "free": "true", "install": "27480" },//9
-        { "category": "Educat", "free": "false", "install": "1983" },//9
-        { "category": "Education", "free": "true", "install": "2258" },//9
-        { "category": "Educat", "free": "true", "install": "19443" },//9
-        { "category": "Education", "free": "false", "install": "25528" },//9
-        { "category": "Education", "free": "false", "install": "255728" },//9
-        { "category": "Education", "free": "false", "install": "245528" },//9
-        { "category": "Educational", "free": "false", "install": "37116" },//9
-        { "category": "Tl", "free": "false", "install": "488639" },//4
-        { "category": "Stegy", "free": "false", "install": "12997" },//3
-        { "category": "Cunication", "free": "true", "install": "28848" },//2
-    ]
+    //var list = [
+    //    { "category": "Strategy", "free": "true", "install": "17297" },//3
+    //    { "category": "Communication", "free": "false", "install": "2848" },//2
+    //    { "category": "Educational", "free": "true", "install": "10990" },//10
+    //    { "category": "Tools", "free": "false", "install": "488639" },//4
+    //    { "category": "Strategy", "free": "false", "install": "12997" },//3
+    //    { "category": "Communication", "free": "true", "install": "28848" },//2
+    //    { "category": "Educational", "free": "false", "install": "19690" },//10
+    //    { "category": "Tools", "free": "true", "install": "48039" },//4
+    //    { "category": "Educational", "free": "true", "install": "44700" },//9
+    //    { "category": "Educational", "free": "true", "install": "27480" },//9
+    //    { "category": "Educat", "free": "false", "install": "1983" },//9
+    //    { "category": "Education", "free": "true", "install": "2258" },//9
+    //    { "category": "Educat", "free": "true", "install": "19443" },//9
+    //    { "category": "Education", "free": "false", "install": "25528" },//9
+    //    { "category": "Education", "free": "false", "install": "255728" },//9
+    //    { "category": "Education", "free": "false", "install": "245528" },//9
+    //    { "category": "Educational", "free": "false", "install": "37116" },//9
+    //    { "category": "Tl", "free": "false", "install": "488639" },//4
+    //    { "category": "Stegy", "free": "false", "install": "12997" },//3
+    //    { "category": "Cunication", "free": "true", "install": "28848" },//2
+    //]
+    var list = searchResult;
 
 
     var isfreeresult = [];

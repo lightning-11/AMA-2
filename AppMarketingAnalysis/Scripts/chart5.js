@@ -1,23 +1,24 @@
 function GetChart5(searchResult) {
     // -----------------------------------------計算x、y軸值--------------------------------------------
-    var list = [
-        { "category": "Strategy", "Released": "2018/7/19" },//3
-        { "category": "Communication", "Released": "2013/8/12" },//2
-        { "category": "Educational", "Released": "2020/4/27" },//10
-        { "category": "Tools", "Released": "2016/3/7" },//4
-        { "category": "Educational", "Released": "2018/8/16" },//9
-        { "category": "Communication", "Released": "2012/5/31" },//17
-        { "category": "Communication", "Released": "2018/10/3" },//78
-        { "category": "Communication", "Released": "2012/9/26" },//184
-        { "category": "Tools", "Released": "2020/9/14" },//84
-        { "category": "Tools", "Released": "2018/12/9" },//50
-        { "category": "Tl", "Released": "2006/9/14" },//84
-        { "category": "Tl", "Released": "2018/12/9" },
-        { "category": "Communication", "Released": "2018/10/3" },//78
-        { "category": "Communication", "Released": "2012/9/26" },//184
-        { "category": "Tools", "Released": "2009/9/14" },//84
-        { "category": "Educational", "Released": "2014/12/9" }//50
-    ]
+    //var list = [
+    //    { "category": "Strategy", "Released": "2018/7/19" },//3
+    //    { "category": "Communication", "Released": "2013/8/12" },//2
+    //    { "category": "Educational", "Released": "2020/4/27" },//10
+    //    { "category": "Tools", "Released": "2016/3/7" },//4
+    //    { "category": "Educational", "Released": "2018/8/16" },//9
+    //    { "category": "Communication", "Released": "2012/5/31" },//17
+    //    { "category": "Communication", "Released": "2018/10/3" },//78
+    //    { "category": "Communication", "Released": "2012/9/26" },//184
+    //    { "category": "Tools", "Released": "2020/9/14" },//84
+    //    { "category": "Tools", "Released": "2018/12/9" },//50
+    //    { "category": "Tl", "Released": "2006/9/14" },//84
+    //    { "category": "Tl", "Released": "2018/12/9" },
+    //    { "category": "Communication", "Released": "2018/10/3" },//78
+    //    { "category": "Communication", "Released": "2012/9/26" },//184
+    //    { "category": "Tools", "Released": "2009/9/14" },//84
+    //    { "category": "Educational", "Released": "2014/12/9" }//50
+    //]
+    var list = searchResult;
 
 
     var result = [];

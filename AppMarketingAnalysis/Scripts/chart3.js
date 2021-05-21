@@ -1,18 +1,19 @@
 function GetChart3(searchResult) {
     // -----------------------------------------計算x、y軸值--------------------------------------------
-    var list = [
-        { "category": "Strategy", "installs": "1,000,000+", "developerId": "Skizze Games" },//3
-        { "category": "Communication", "installs": "100,000+", "developerId": "Xavier Roche" },//2
-        { "category": "Educational", "installs": "10,000,000+", "developerId": "BabyBus" },//10
-        { "category": "Tools", "installs": "50,000,000+", "developerId": "TheMauSoft" },//4
-        { "category": "Educational", "installs": "10,000,000+", "developerId": "BabyBus2" },//9
-        { "category": "Educational", "installs": "10,000,000+", "developerId": "BabyBus3" },//9
-        { "category": "Stegy", "installs": "1,000,000+", "developerId": "Skizze Games" },//3
-        { "category": "Commuication", "installs": "100,000+", "developerId": "Xavier Roche" },//2
-        { "category": "Educaional", "installs": "10,000,000+", "developerId": "BabyBus" },//10
-        { "category": "Tols", "installs": "50,000,000+", "developerId": "TheMauSoft" },//4
-        { "category": "Educatal", "installs": "10,000,000+", "developerId": "BabyBus2" }//9
-    ]
+    //var list = [
+    //    { "category": "Strategy", "installs": "1,000,000+", "developerId": "Skizze Games" },//3
+    //    { "category": "Communication", "installs": "100,000+", "developerId": "Xavier Roche" },//2
+    //    { "category": "Educational", "installs": "10,000,000+", "developerId": "BabyBus" },//10
+    //    { "category": "Tools", "installs": "50,000,000+", "developerId": "TheMauSoft" },//4
+    //    { "category": "Educational", "installs": "10,000,000+", "developerId": "BabyBus2" },//9
+    //    { "category": "Educational", "installs": "10,000,000+", "developerId": "BabyBus3" },//9
+    //    { "category": "Stegy", "installs": "1,000,000+", "developerId": "Skizze Games" },//3
+    //    { "category": "Commuication", "installs": "100,000+", "developerId": "Xavier Roche" },//2
+    //    { "category": "Educaional", "installs": "10,000,000+", "developerId": "BabyBus" },//10
+    //    { "category": "Tols", "installs": "50,000,000+", "developerId": "TheMauSoft" },//4
+    //    { "category": "Educatal", "installs": "10,000,000+", "developerId": "BabyBus2" }//9
+    //]
+    var list = searchResult;
 
 
     var result = [];

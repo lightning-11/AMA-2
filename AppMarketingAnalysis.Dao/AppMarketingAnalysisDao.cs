@@ -58,50 +58,186 @@ namespace AppMarketingAnalysis.Dao
         /// </summary>
         /// <param name="amad"></param>
         /// <returns></returns>
-        public List<AppMarketingAnalysis.Model.AppMarketingAnalysisData> GetAppSearch(AppMarketingAnalysis.Model.AppMarketingAnalysisData amad, string target)
+        public List<Model.StringResult> GetAppSearch(Model.AppMarketingAnalysisData amad, string target)
         {
             DataTable dt = new DataTable();
+            List<Model.StringResult> result = new List<Model.StringResult>();
             string sql = "";
             if (target == "AppGrid")
             {
-                sql = @"SELECT *
-                                        FROM AppMarketingAnalysisData as AMAD 
-                                        WHERE (UPPER(AMAD.APP_NAME) LIKE UPPER('%'+@APP_NAME+'%') OR @APP_NAME = '')
-                                        AND
-                                        
-                                        ORDER BY AMAD.APP_NAME DESC";
+                sql = @"SELECT APP_NAME, CATEGORY, RATING, RATING_COUNT, INSTALLS_RANGE, FREE
+                        FROM AppMarketingAnalysisData as AMAD";
 
                 using (SqlConnection conn = new SqlConnection(this.GetDBConnectionString()))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.Add(new SqlParameter("@APP_NAME", amad.APP_NAME == null ? string.Empty : amad.APP_NAME));
+                    //cmd.Parameters.Add(new SqlParameter("@APP_NAME", amad.APP_NAME == null ? string.Empty : amad.APP_NAME));
                     SqlDataAdapter sqlAdapter = new SqlDataAdapter(cmd);
                     sqlAdapter.Fill(dt);
                     conn.Close();
                 }
+                foreach (DataRow row in dt.Rows)
+                {
+                    result.Add(new AppMarketingAnalysis.Model.StringResult()
+                    {
+                        APP_NAME = row["APP_NAME"].ToString(),
+                        CATEGORY = row["CATEGORY"].ToString(),
+                        RATING = row["RATING"].ToString(),
+                        RATING_COUNT = row["RATING_COUNT"].ToString(),
+                        INSTALLS_RANGE = row["INSTALLS_RANGE"].ToString(),
+                        FREE = row["FREE"].ToString()
+                    });
+                }
             }
             else if (target == "Chart1")
             {
+                sql = @"SELECT category,rating
+                        FROM AppMarketingAnalysisData as AMAD 
+                        ";
 
+                using (SqlConnection conn = new SqlConnection(this.GetDBConnectionString()))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    //cmd.Parameters.Add(new SqlParameter("@APP_NAME", amad.APP_NAME == null ? string.Empty : amad.APP_NAME));
+                    SqlDataAdapter sqlAdapter = new SqlDataAdapter(cmd);
+                    sqlAdapter.Fill(dt);
+                    conn.Close();
+                }
+                foreach(DataRow row in dt.Rows)
+                {
+                    result.Add(new AppMarketingAnalysis.Model.StringResult()
+                    {
+                        category = row["category"].ToString(),
+                        rating = row["rating"].ToString()
+                    });
+                }
             }
             else if (target == "Chart2")
             {
+                sql = @"SELECT category,rating_count as ratingcount
+                        FROM AppMarketingAnalysisData as AMAD 
+                        ";
 
+                using (SqlConnection conn = new SqlConnection(this.GetDBConnectionString()))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    //cmd.Parameters.Add(new SqlParameter("@APP_NAME", amad.APP_NAME == null ? string.Empty : amad.APP_NAME));
+                    SqlDataAdapter sqlAdapter = new SqlDataAdapter(cmd);
+                    sqlAdapter.Fill(dt);
+                    conn.Close();
+                }
+                foreach (DataRow row in dt.Rows)
+                {
+                    result.Add(new AppMarketingAnalysis.Model.StringResult()
+                    {
+                        category = row["category"].ToString(),
+                        rating = row["ratingcount"].ToString()
+                    });
+                }
             }
             else if (target == "Chart3")
             {
+                sql = @"SELECT category,INSTALLS_COUNT as installs, DEVELOPER_ID as developerId 
+                        FROM AppMarketingAnalysisData as AMAD 
+                        ";
 
+                using (SqlConnection conn = new SqlConnection(this.GetDBConnectionString()))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    //cmd.Parameters.Add(new SqlParameter("@APP_NAME", amad.APP_NAME == null ? string.Empty : amad.APP_NAME));
+                    SqlDataAdapter sqlAdapter = new SqlDataAdapter(cmd);
+                    sqlAdapter.Fill(dt);
+                    conn.Close();
+                }
+                foreach (DataRow row in dt.Rows)
+                {
+                    result.Add(new AppMarketingAnalysis.Model.StringResult()
+                    {
+                        category = row["category"].ToString(),
+                        installs = row["installs"].ToString(),
+                        developerId = row["developerId"].ToString()
+                    });
+                }
             }
             else if (target == "Chart4")
             {
+                sql = @"SELECT category,INSTALLS_COUNT as maximumInstalls,RATING_COUNT as ratingcount 
+                        FROM AppMarketingAnalysisData as AMAD 
+                        ";
 
+                using (SqlConnection conn = new SqlConnection(this.GetDBConnectionString()))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    //cmd.Parameters.Add(new SqlParameter("@APP_NAME", amad.APP_NAME == null ? string.Empty : amad.APP_NAME));
+                    SqlDataAdapter sqlAdapter = new SqlDataAdapter(cmd);
+                    sqlAdapter.Fill(dt);
+                    conn.Close();
+                }
+                foreach (DataRow row in dt.Rows)
+                {
+                    result.Add(new AppMarketingAnalysis.Model.StringResult()
+                    {
+                        category = row["category"].ToString(),
+                        maximumInstalls = row["maximumInstalls"].ToString(),
+                        ratingcount = row["ratingcount"].ToString()
+                    });
+                }
             }
             else if (target == "Chart5")
             {
+                sql = @"SELECT category,RELEASED as Released 
+                        FROM AppMarketingAnalysisData as AMAD 
+                        ";
 
+                using (SqlConnection conn = new SqlConnection(this.GetDBConnectionString()))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    //cmd.Parameters.Add(new SqlParameter("@APP_NAME", amad.APP_NAME == null ? string.Empty : amad.APP_NAME));
+                    SqlDataAdapter sqlAdapter = new SqlDataAdapter(cmd);
+                    sqlAdapter.Fill(dt);
+                    conn.Close();
+                }
+                foreach (DataRow row in dt.Rows)
+                {
+                    result.Add(new AppMarketingAnalysis.Model.StringResult()
+                    {
+                        category = row["category"].ToString(),
+                        rating = row["Released"].ToString()
+                    });
+                }
             }
-            return this.MapAppDataToList(dt);
+            else if (target == "Chart6")
+            {
+                sql = @"SELECT category, free, INSTALLS_COUNT as install 
+                        FROM AppMarketingAnalysisData as AMAD 
+                        ";
+
+                using (SqlConnection conn = new SqlConnection(this.GetDBConnectionString()))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    //cmd.Parameters.Add(new SqlParameter("@APP_NAME", amad.APP_NAME == null ? string.Empty : amad.APP_NAME));
+                    SqlDataAdapter sqlAdapter = new SqlDataAdapter(cmd);
+                    sqlAdapter.Fill(dt);
+                    conn.Close();
+                }
+                foreach (DataRow row in dt.Rows)
+                {
+                    result.Add(new AppMarketingAnalysis.Model.StringResult()
+                    {
+                        category = row["category"].ToString(),
+                        free = row["free"].ToString(),
+                        install = row["install"].ToString()
+                    });
+                }
+            }
+            return result;
         }
 
         /// Map資料進List (AppData)

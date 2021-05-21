@@ -1,22 +1,23 @@
 function GetChart4_3(searchResult) {
     // -----------------------------------------計算x、y軸值--------------------------------------------
-    var list = [
-        { "category": "Strategy", "maximumInstalls": "2161778", "ratingcount": "17297", "price": "0" },//3
-        { "category": "Communication", "maximumInstalls": "351560", "ratingcount": "2848", "price": "2.6" },//2
-        { "category": "Educational", "maximumInstalls": "12520805", "ratingcount": "10990", "price": "1.5" },//10
-        { "category": "Tools", "maximumInstalls": "79304739", "ratingcount": "488639", "price": "0" },//4
-        { "category": "Educational", "maximumInstalls": "29969311", "ratingcount": "44700", "price": "2.2" },//9
-        { "category": "Srategy", "maximumInstalls": "2161778", "ratingcount": "17297", "price": "4.4" },//3
-        { "category": "Counication", "maximumInstalls": "351560", "ratingcount": "2848", "price": "2.6" },//2
-        { "category": "ducational", "maximumInstalls": "12520805", "ratingcount": "10990", "price": "1.5" },//10
-        { "category": "Too", "maximumInstalls": "79304739", "ratingcount": "488639", "price": "0" },//4
-        { "category": "Ednal", "maximumInstalls": "29969311", "ratingcount": "44700", "price": "1.2" },//9
-        { "category": "Strate", "maximumInstalls": "2161778", "ratingcount": "17297", "price": "0" },//3
-        { "category": "Communication", "maximumInstalls": "351560", "ratingcount": "2848", "price": "3.6" },//2
-        { "category": "Edational", "maximumInstalls": "12520805", "ratingcount": "10990", "price": "4.5" },//10
-        { "category": "Tools", "maximumInstalls": "79304739", "ratingcount": "488639", "price": "0" },//4
-        { "category": "Educational", "maximumInstalls": "29969311", "ratingcount": "44700", "price": "0.2" },//9
-    ]
+    //var list = [
+    //    { "category": "Strategy", "maximumInstalls": "2161778", "ratingcount": "17297", "price": "0" },//3
+    //    { "category": "Communication", "maximumInstalls": "351560", "ratingcount": "2848", "price": "2.6" },//2
+    //    { "category": "Educational", "maximumInstalls": "12520805", "ratingcount": "10990", "price": "1.5" },//10
+    //    { "category": "Tools", "maximumInstalls": "79304739", "ratingcount": "488639", "price": "0" },//4
+    //    { "category": "Educational", "maximumInstalls": "29969311", "ratingcount": "44700", "price": "2.2" },//9
+    //    { "category": "Srategy", "maximumInstalls": "2161778", "ratingcount": "17297", "price": "4.4" },//3
+    //    { "category": "Counication", "maximumInstalls": "351560", "ratingcount": "2848", "price": "2.6" },//2
+    //    { "category": "ducational", "maximumInstalls": "12520805", "ratingcount": "10990", "price": "1.5" },//10
+    //    { "category": "Too", "maximumInstalls": "79304739", "ratingcount": "488639", "price": "0" },//4
+    //    { "category": "Ednal", "maximumInstalls": "29969311", "ratingcount": "44700", "price": "1.2" },//9
+    //    { "category": "Strate", "maximumInstalls": "2161778", "ratingcount": "17297", "price": "0" },//3
+    //    { "category": "Communication", "maximumInstalls": "351560", "ratingcount": "2848", "price": "3.6" },//2
+    //    { "category": "Edational", "maximumInstalls": "12520805", "ratingcount": "10990", "price": "4.5" },//10
+    //    { "category": "Tools", "maximumInstalls": "79304739", "ratingcount": "488639", "price": "0" },//4
+    //    { "category": "Educational", "maximumInstalls": "29969311", "ratingcount": "44700", "price": "0.2" },//9
+    //]
+    var list = searchResult;
 
 
     var result = [];

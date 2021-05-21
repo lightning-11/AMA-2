@@ -50,10 +50,12 @@ namespace AppMarketingAnalysis.Controllers
         /// <param name="amad"></param>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult GetAppSearch(AppMarketingAnalysisData amad, string target) //接收search的資料
+        //public JsonResult GetAppSearch(AppMarketingAnalysisData amad, string target)
+        public ActionResult GetAppSearch(AppMarketingAnalysisData amad, string target) //接收search的資料
         {
-            List<AppMarketingAnalysisData> searchResult =  AppMarketingAnalysisService.GetAppSearch(amad, target);
-            return Json(searchResult);
+            List<Model.StringResult> searchResult =  AppMarketingAnalysisService.GetAppSearch(amad, target);
+            //return Json(searchResult);
+            return Content(JsonConvert.SerializeObject(searchResult), "application/json");
         }
     }
 }

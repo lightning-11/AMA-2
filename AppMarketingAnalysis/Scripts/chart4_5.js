@@ -1,21 +1,22 @@
 function GetChart4_5(searchResult) {
     // -----------------------------------------計算x、y軸值--------------------------------------------
-    var list = [
-        { "category": "Strategy", "maximumInstalls": "2161778", "ratingcount": "17297", "price": "0" },//3
-        { "category": "Communication", "maximumInstalls": "351560", "ratingcount": "2848", "price": "2.6" },//2
-        { "category": "Educational", "maximumInstalls": "12520805", "ratingcount": "10990", "price": "0" },//10
-        { "category": "Tools", "maximumInstalls": "79304739", "ratingcount": "488639", "price": "0" },//4
-        { "category": "Educational", "maximumInstalls": "29969311", "ratingcount": "44700", "price": "0" },//9
-        { "category": "Srategy", "maximumInstalls": "2161778", "ratingcount": "17297", "price": "0" },//3
-        { "category": "Comunication", "maximumInstalls": "351560", "ratingcount": "2848", "price": "2.6" },//2
-        { "category": "Ectional", "maximumInstalls": "12520805", "ratingcount": "10990", "price": "0" },//10
-        { "category": "Tols", "maximumInstalls": "79304739", "ratingcount": "488639", "price": "0" },//4
-        { "category": "Educationl", "maximumInstalls": "29969311", "ratingcount": "44700", "price": "0" },//9
-        { "category": "Strtegy", "maximumInstalls": "2161778", "ratingcount": "17297", "price": "0" },//3
-        { "category": "Communication", "maximumInstalls": "351560", "ratingcount": "2848", "price": "2.6" },//2
-        { "category": "Educational", "maximumInstalls": "12520805", "ratingcount": "10990", "price": "0" },//10
-        { "category": "Tools", "maximumInstalls": "79304739", "ratingcount": "488639", "price": "0" },//4
-    ]
+    //var list = [
+    //    { "category": "Strategy", "maximumInstalls": "2161778", "ratingcount": "17297", "price": "0" },//3
+    //    { "category": "Communication", "maximumInstalls": "351560", "ratingcount": "2848", "price": "2.6" },//2
+    //    { "category": "Educational", "maximumInstalls": "12520805", "ratingcount": "10990", "price": "0" },//10
+    //    { "category": "Tools", "maximumInstalls": "79304739", "ratingcount": "488639", "price": "0" },//4
+    //    { "category": "Educational", "maximumInstalls": "29969311", "ratingcount": "44700", "price": "0" },//9
+    //    { "category": "Srategy", "maximumInstalls": "2161778", "ratingcount": "17297", "price": "0" },//3
+    //    { "category": "Comunication", "maximumInstalls": "351560", "ratingcount": "2848", "price": "2.6" },//2
+    //    { "category": "Ectional", "maximumInstalls": "12520805", "ratingcount": "10990", "price": "0" },//10
+    //    { "category": "Tols", "maximumInstalls": "79304739", "ratingcount": "488639", "price": "0" },//4
+    //    { "category": "Educationl", "maximumInstalls": "29969311", "ratingcount": "44700", "price": "0" },//9
+    //    { "category": "Strtegy", "maximumInstalls": "2161778", "ratingcount": "17297", "price": "0" },//3
+    //    { "category": "Communication", "maximumInstalls": "351560", "ratingcount": "2848", "price": "2.6" },//2
+    //    { "category": "Educational", "maximumInstalls": "12520805", "ratingcount": "10990", "price": "0" },//10
+    //    { "category": "Tools", "maximumInstalls": "79304739", "ratingcount": "488639", "price": "0" },//4
+    //]
+    var list = searchResult;
 
 
     var result = [];

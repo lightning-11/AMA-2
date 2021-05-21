@@ -1,27 +1,28 @@
 function GetChart2(searchResult) {
     // -----------------------------------------計算x、y軸值--------------------------------------------
-    var list = [
-        { "category": "Strategy", "ratingcount": "17297" },//3
-        { "category": "Communication", "ratingcount": "2848" },//2
-        { "category": "Educational", "ratingcount": "10990" },//10
-        { "category": "Tools", "ratingcount": "488639" },//4
-        { "category": "Educational", "ratingcount": "44700" },//9
-        { "category": "Strateg", "ratingcount": "17297" },//3
-        { "category": "Communiation", "ratingcount": "2848" },//2
-        { "category": "Educatonal", "ratingcount": "10990" },//10
-        { "category": "Tool", "ratingcount": "488639" },//4
-        { "category": "Educatonal", "ratingcount": "44700" },//9
-        { "category": "Srategy", "ratingcount": "17297" },//3
-        { "category": "ommunication", "ratingcount": "2848" },//2
-        { "category": "Eucational", "ratingcount": "10990" },//10
-        { "category": "ools", "ratingcount": "488639" },//4
-        { "category": "Eucational", "ratingcount": "44700" },//9
-        { "category": "Srgy", "ratingcount": "17297" },//3
-        { "category": "omnication", "ratingcount": "2848" },//2
-        { "category": "Eucaal", "ratingcount": "10990" },//10
-        { "category": "oos", "ratingcount": "488639" },//4
-        { "category": "Eucional", "ratingcount": "44700" },//9
-    ]
+    //var list = [
+    //    { "category": "Strategy", "ratingcount": "17297" },//3
+    //    { "category": "Communication", "ratingcount": "2848" },//2
+    //    { "category": "Educational", "ratingcount": "10990" },//10
+    //    { "category": "Tools", "ratingcount": "488639" },//4
+    //    { "category": "Educational", "ratingcount": "44700" },//9
+    //    { "category": "Strateg", "ratingcount": "17297" },//3
+    //    { "category": "Communiation", "ratingcount": "2848" },//2
+    //    { "category": "Educatonal", "ratingcount": "10990" },//10
+    //    { "category": "Tool", "ratingcount": "488639" },//4
+    //    { "category": "Educatonal", "ratingcount": "44700" },//9
+    //    { "category": "Srategy", "ratingcount": "17297" },//3
+    //    { "category": "ommunication", "ratingcount": "2848" },//2
+    //    { "category": "Eucational", "ratingcount": "10990" },//10
+    //    { "category": "ools", "ratingcount": "488639" },//4
+    //    { "category": "Eucational", "ratingcount": "44700" },//9
+    //    { "category": "Srgy", "ratingcount": "17297" },//3
+    //    { "category": "omnication", "ratingcount": "2848" },//2
+    //    { "category": "Eucaal", "ratingcount": "10990" },//10
+    //    { "category": "oos", "ratingcount": "488639" },//4
+    //    { "category": "Eucional", "ratingcount": "44700" },//9
+    //]
+    var list = searchResult;
 
 
     var result = [];

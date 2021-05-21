@@ -7,7 +7,7 @@ namespace AppMarketingAnalysis.Service
     public interface IAppMarketingAnalysisService
     {
         List<string> GetAutoCompleteData(string target);
-        List<AppMarketingAnalysisData> GetAppSearch(AppMarketingAnalysisData amad, string target);
+        List<Model.StringResult> GetAppSearch(AppMarketingAnalysisData amad, string target);
         List<SelectListItem> SetDropDownListData(string target);
     }
 }

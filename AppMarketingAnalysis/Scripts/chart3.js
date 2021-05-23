@@ -52,7 +52,8 @@ function GetChart3(searchResult) {
 	}
 
 	for (var i = 0, len = count1.length; i < len; i++) {
-		avginstalls.push(parseFloat(suminstalls[i]) / parseFloat(count1[i]));
+		//avginstalls.push(parseFloat(suminstalls[i]) / parseFloat(count1[i]));
+		avginstalls.push((parseFloat(suminstalls[i]) / parseFloat(count1[i])).toFixed(0));
 	}
 
 	for (var i = 0, len = developerIdvalue.length; i < len; i++) {
@@ -76,7 +77,8 @@ function GetChart3(searchResult) {
 	var bor = [];//'rgba(172, 171, 170, 0.8)';
 	var color = [];
 
-	for (var i = 0; i < avgratingcount.length; i++) {
+	//for (var i = 0; i < avgratingcount.length; i++) {
+	for (var i = 0; i < avginstalls.length; i++){
 		var r = Math.floor(Math.random() * 250);
 		var g = Math.floor(Math.random() * 250);
 		var b = Math.floor(Math.random() * 250);

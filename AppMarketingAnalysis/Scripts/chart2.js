@@ -51,7 +51,8 @@ function GetChart2(searchResult) {
 	}
 
 	for (var i = 0, len = count2.length; i < len; i++) {
-		avgratingcount.push(parseFloat(sumratingcount[i]) / parseFloat(count2[i]));
+		//avgratingcount.push(parseFloat(sumratingcount[i]) / parseFloat(count2[i]));
+		avgratingcount.push((parseFloat(sumratingcount[i]) / parseFloat(count2[i])).toFixed(0));
 	}
 
 	var outputStr = "---notrepeat:" + result + "<br> repeat: " + repeat

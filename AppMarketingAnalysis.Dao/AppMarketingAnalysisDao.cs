@@ -292,6 +292,7 @@ namespace AppMarketingAnalysis.Dao
                 //sql = @"SELECT TOP 1000 category, INSTALLS_COUNT as install, free 
                 sql = @"SELECT TOP 100000 category, INSTALLS_COUNT as install, case when free = 'TRUE' then 'true' else 'false' end as free
                         FROM AppMarketingAnalysisData as AMAD 
+                        WHERE (1 = 1 ) 
                         ";
                 sql = ListParaToSql(sql, amad, "CATEGORY");
                 sql = ListParaToSql(sql, amad, "INSTALLS_RANGE");

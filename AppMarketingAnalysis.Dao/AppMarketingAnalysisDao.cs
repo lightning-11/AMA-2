@@ -108,7 +108,8 @@ namespace AppMarketingAnalysis.Dao
             }
             else if (target == "Chart1")
             {
-                sql = @"SELECT TOP 1000 category,rating
+                //sql = @"SELECT TOP 1000 category,rating,free
+                sql = @"SELECT top 100000 category,rating,case when free = 'TRUE' then 'true' else 'false' end as free
                         FROM AppMarketingAnalysisData as AMAD 
                         WHERE ((RATING_COUNT >= @RATING_C1 AND RATING_COUNT <= @RATING_C2) OR (@RATING_C2 = 0))
                           AND ((PRICE >= @PRICE_1 AND PRICE <= @PRICE_2) OR (@PRICE_2 = 0))
@@ -138,13 +139,14 @@ namespace AppMarketingAnalysis.Dao
                     result.Add(new AppMarketingAnalysis.Model.StringResult()
                     {
                         category = row["category"].ToString(),
-                        rating = row["rating"].ToString()
+                        rating = row["rating"].ToString(),
+                        free = row["free"].ToString()
                     });
                 }
             }
             else if (target == "Chart2")
             {
-                sql = @"SELECT TOP 1000 category,rating_count as ratingcount
+                sql = @"SELECT TOP 100000 category,rating_count as ratingcount
                         FROM AppMarketingAnalysisData as AMAD
                         WHERE ((RATING_COUNT >= @RATING_C1 AND RATING_COUNT <= @RATING_C2) OR (@RATING_C2 = 0))
                           AND ((PRICE >= @PRICE_1 AND PRICE <= @PRICE_2) OR (@PRICE_2 = 0))
@@ -180,7 +182,7 @@ namespace AppMarketingAnalysis.Dao
             }
             else if (target == "Chart3")
             {
-                sql = @"SELECT TOP 1000 category,INSTALLS_COUNT as installs, DEVELOPER_ID as developerId 
+                sql = @"SELECT TOP 100000 category,INSTALLS_COUNT as installs, DEVELOPER_ID as developerId 
                         FROM AppMarketingAnalysisData as AMAD 
                         WHERE ((PRICE >= @PRICE_1 AND PRICE <= @PRICE_2) OR (@PRICE_2 = 0))
                         ";
@@ -213,7 +215,7 @@ namespace AppMarketingAnalysis.Dao
             }
             else if (target == "Chart4")
             {
-                sql = @"SELECT TOP 1000 category,INSTALLS_COUNT as maximumInstalls,RATING_COUNT as ratingcount,price  
+                sql = @"SELECT TOP 100000 category,INSTALLS_COUNT as maximumInstalls,RATING_COUNT as ratingcount,price  
                         FROM AppMarketingAnalysisData as AMAD 
                         WHERE ((RATING_COUNT >= @RATING_C1 AND RATING_COUNT <= @RATING_C2) OR (@RATING_C2 = 0))
                           AND ((PRICE >= @PRICE_1 AND PRICE <= @PRICE_2) OR (@PRICE_2 = 0))
@@ -250,7 +252,7 @@ namespace AppMarketingAnalysis.Dao
             }
             else if (target == "Chart5")
             {
-                sql = @"SELECT TOP 1000 category,RELEASED as Released 
+                sql = @"SELECT TOP 100000 category,RELEASED as Released 
                         FROM AppMarketingAnalysisData as AMAD
                         WHERE ((PRICE >= @PRICE_1 AND PRICE <= @PRICE_2) OR (@PRICE_2 = 0))
                           AND ( RELEASED >= @RELEASED_1 AND RELEASED<= @RELEASED_2)
@@ -287,7 +289,8 @@ namespace AppMarketingAnalysis.Dao
             }
             else if (target == "Chart6")
             {
-                sql = @"SELECT TOP 1000 category, free, INSTALLS_COUNT as install 
+                //sql = @"SELECT TOP 1000 category, INSTALLS_COUNT as install, free 
+                sql = @"SELECT TOP 100000 category, INSTALLS_COUNT as install, case when free = 'TRUE' then 'true' else 'false' end as free
                         FROM AppMarketingAnalysisData as AMAD 
                         ";
                 sql = ListParaToSql(sql, amad, "CATEGORY");

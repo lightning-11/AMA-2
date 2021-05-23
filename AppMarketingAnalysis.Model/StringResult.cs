@@ -70,6 +70,10 @@ namespace AppMarketingAnalysis.Model
         [DisplayName("APP發行日期")]
         public string RELEASED { get; set; }
 
+        //APP發行日期
+        [DisplayName("APP發行日期")]
+        public string Released { get; set; }
+
         //APP是免費還是付費
         [DisplayName("APP是免費還是付費")]
         public string free { get; set; }

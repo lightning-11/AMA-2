@@ -25,7 +25,11 @@ namespace AppMarketingAnalysis.Model
 
         //平均評分
         [DisplayName("評分")]
-        public int RATING { get; set; }
+        public int[] RATING { get; set; }
+
+        //是否包含未評分
+        [DisplayName("是否包含未評分")]
+        public string[] NO_RATING { get; set; }
 
         //評分數量
         [DisplayName("評分數量")]
@@ -65,7 +69,7 @@ namespace AppMarketingAnalysis.Model
 
         //APP是免費還是付費
         [DisplayName("APP是免費還是付費")]
-        public bool FREE { get; set; }
+        public string[] FREE { get; set; }
 
         //APP價格
         [DisplayName("APP價格")]

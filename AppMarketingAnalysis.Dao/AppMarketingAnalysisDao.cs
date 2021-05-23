@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace AppMarketingAnalysis.Dao
@@ -65,15 +62,34 @@ namespace AppMarketingAnalysis.Dao
             string sql = "";
             if (target == "AppGrid")
             {
-                sql = @"SELECT APP_NAME, CATEGORY, RATING, RATING_COUNT, INSTALLS_RANGE, FREE
-                        FROM AppMarketingAnalysisData as AMAD";
+                sql = @"SELECT TOP 100 APP_NAME, CATEGORY, RATING, RATING_COUNT, INSTALLS_RANGE, FREE
+                        FROM AppMarketingAnalysisData as AMAD
+                        WHERE (APP_NAME = @APP_NAME OR @APP_NAME='')
+                          AND ((RATING >= @RATING1 AND RATING <= @RATING2) OR (@RATING2 = 0))
+                          AND ((RATING_COUNT >= @RATING_C1 AND RATING_COUNT <= @RATING_C2) OR (@RATING_C2 = 0))
+                          AND RATING != @RATING_NO";
+                sql = ListParaToSql(sql, amad, "CATEGORY"); 
+                sql = ListParaToSql(sql, amad, "FREE");
+                sql = ListParaToSql(sql, amad, "INSTALLS_RANGE");
 
                 using (SqlConnection conn = new SqlConnection(this.GetDBConnectionString()))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(sql, conn);
-                    //cmd.Parameters.Add(new SqlParameter("@APP_NAME", amad.APP_NAME == null ? string.Empty : amad.APP_NAME));
+
+                    //APP名稱
+                    cmd.Parameters.Add(new SqlParameter("@APP_NAME", amad.APP_NAME == null ? string.Empty : amad.APP_NAME));
+                    //評分
+                    cmd.Parameters.Add(new SqlParameter("@RATING1", amad.RATING[0] ));
+                    cmd.Parameters.Add(new SqlParameter("@RATING2", amad.RATING[1] ));
+                    //未評分
+                    cmd.Parameters.Add(new SqlParameter("@RATING_NO", amad.NO_RATING == null ? 0 : -1));
+                    //評分數量
+                    cmd.Parameters.Add(new SqlParameter("@RATING_C1", amad.MIN_RATING_COUNT));
+                    cmd.Parameters.Add(new SqlParameter("@RATING_C2", amad.MAX_RATING_COUNT));
+
                     SqlDataAdapter sqlAdapter = new SqlDataAdapter(cmd);
+                    Console.WriteLine(cmd.CommandText);
                     sqlAdapter.Fill(dt);
                     conn.Close();
                 }
@@ -92,15 +108,27 @@ namespace AppMarketingAnalysis.Dao
             }
             else if (target == "Chart1")
             {
-                sql = @"SELECT category,rating
+                sql = @"SELECT TOP 1000 category,rating
                         FROM AppMarketingAnalysisData as AMAD 
+                        WHERE ((RATING_COUNT >= @RATING_C1 AND RATING_COUNT <= @RATING_C2) OR (@RATING_C2 = 0))
+                          AND ((PRICE >= @PRICE_1 AND PRICE <= @PRICE_2) OR (@PRICE_2 = 0))
                         ";
+                sql = ListParaToSql(sql, amad, "CATEGORY");
+                sql = ListParaToSql(sql, amad, "FREE");
+                sql = ListParaToSql(sql, amad, "INSTALLS_RANGE");
 
                 using (SqlConnection conn = new SqlConnection(this.GetDBConnectionString()))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(sql, conn);
-                    //cmd.Parameters.Add(new SqlParameter("@APP_NAME", amad.APP_NAME == null ? string.Empty : amad.APP_NAME));
+
+                    //評分數量
+                    cmd.Parameters.Add(new SqlParameter("@RATING_C1", amad.MIN_RATING_COUNT));
+                    cmd.Parameters.Add(new SqlParameter("@RATING_C2", amad.MAX_RATING_COUNT));
+                    //APP價格
+                    cmd.Parameters.Add(new SqlParameter("@PRICE_1", amad.MIN_PRICE));
+                    cmd.Parameters.Add(new SqlParameter("@PRICE_2", amad.MAX_PRICE));
+
                     SqlDataAdapter sqlAdapter = new SqlDataAdapter(cmd);
                     sqlAdapter.Fill(dt);
                     conn.Close();
@@ -116,15 +144,27 @@ namespace AppMarketingAnalysis.Dao
             }
             else if (target == "Chart2")
             {
-                sql = @"SELECT category,rating_count as ratingcount
-                        FROM AppMarketingAnalysisData as AMAD 
+                sql = @"SELECT TOP 1000 category,rating_count as ratingcount
+                        FROM AppMarketingAnalysisData as AMAD
+                        WHERE ((RATING_COUNT >= @RATING_C1 AND RATING_COUNT <= @RATING_C2) OR (@RATING_C2 = 0))
+                          AND ((PRICE >= @PRICE_1 AND PRICE <= @PRICE_2) OR (@PRICE_2 = 0))
                         ";
+                sql = ListParaToSql(sql, amad, "CATEGORY");
+                sql = ListParaToSql(sql, amad, "FREE");
+                sql = ListParaToSql(sql, amad, "INSTALLS_RANGE");
 
                 using (SqlConnection conn = new SqlConnection(this.GetDBConnectionString()))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(sql, conn);
-                    //cmd.Parameters.Add(new SqlParameter("@APP_NAME", amad.APP_NAME == null ? string.Empty : amad.APP_NAME));
+
+                    //評分數量
+                    cmd.Parameters.Add(new SqlParameter("@RATING_C1", amad.MIN_RATING_COUNT));
+                    cmd.Parameters.Add(new SqlParameter("@RATING_C2", amad.MAX_RATING_COUNT));
+                    //APP價格
+                    cmd.Parameters.Add(new SqlParameter("@PRICE_1", amad.MIN_PRICE));
+                    cmd.Parameters.Add(new SqlParameter("@PRICE_2", amad.MAX_PRICE));
+
                     SqlDataAdapter sqlAdapter = new SqlDataAdapter(cmd);
                     sqlAdapter.Fill(dt);
                     conn.Close();
@@ -134,21 +174,29 @@ namespace AppMarketingAnalysis.Dao
                     result.Add(new AppMarketingAnalysis.Model.StringResult()
                     {
                         category = row["category"].ToString(),
-                        rating = row["ratingcount"].ToString()
+                        ratingcount = row["ratingcount"].ToString()
                     });
                 }
             }
             else if (target == "Chart3")
             {
-                sql = @"SELECT category,INSTALLS_COUNT as installs, DEVELOPER_ID as developerId 
+                sql = @"SELECT TOP 1000 category,INSTALLS_COUNT as installs, DEVELOPER_ID as developerId 
                         FROM AppMarketingAnalysisData as AMAD 
+                        WHERE ((PRICE >= @PRICE_1 AND PRICE <= @PRICE_2) OR (@PRICE_2 = 0))
                         ";
+                sql = ListParaToSql(sql, amad, "CATEGORY");
+                sql = ListParaToSql(sql, amad, "FREE");
+                sql = ListParaToSql(sql, amad, "INSTALLS_RANGE");
 
                 using (SqlConnection conn = new SqlConnection(this.GetDBConnectionString()))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(sql, conn);
-                    //cmd.Parameters.Add(new SqlParameter("@APP_NAME", amad.APP_NAME == null ? string.Empty : amad.APP_NAME));
+
+                    //APP價格
+                    cmd.Parameters.Add(new SqlParameter("@PRICE_1", amad.MIN_PRICE));
+                    cmd.Parameters.Add(new SqlParameter("@PRICE_2", amad.MAX_PRICE));
+
                     SqlDataAdapter sqlAdapter = new SqlDataAdapter(cmd);
                     sqlAdapter.Fill(dt);
                     conn.Close();
@@ -165,15 +213,26 @@ namespace AppMarketingAnalysis.Dao
             }
             else if (target == "Chart4")
             {
-                sql = @"SELECT category,INSTALLS_COUNT as maximumInstalls,RATING_COUNT as ratingcount 
+                sql = @"SELECT TOP 1000 category,INSTALLS_COUNT as maximumInstalls,RATING_COUNT as ratingcount,price  
                         FROM AppMarketingAnalysisData as AMAD 
+                        WHERE ((RATING_COUNT >= @RATING_C1 AND RATING_COUNT <= @RATING_C2) OR (@RATING_C2 = 0))
+                          AND ((PRICE >= @PRICE_1 AND PRICE <= @PRICE_2) OR (@PRICE_2 = 0))
                         ";
+                sql = ListParaToSql(sql, amad, "CATEGORY");
+                sql = ListParaToSql(sql, amad, "INSTALLS_RANGE");
 
                 using (SqlConnection conn = new SqlConnection(this.GetDBConnectionString()))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(sql, conn);
-                    //cmd.Parameters.Add(new SqlParameter("@APP_NAME", amad.APP_NAME == null ? string.Empty : amad.APP_NAME));
+
+                    //評分數量
+                    cmd.Parameters.Add(new SqlParameter("@RATING_C1", amad.MIN_RATING_COUNT));
+                    cmd.Parameters.Add(new SqlParameter("@RATING_C2", amad.MAX_RATING_COUNT));
+                    //APP價格
+                    cmd.Parameters.Add(new SqlParameter("@PRICE_1", amad.MIN_PRICE));
+                    cmd.Parameters.Add(new SqlParameter("@PRICE_2", amad.MAX_PRICE));
+
                     SqlDataAdapter sqlAdapter = new SqlDataAdapter(cmd);
                     sqlAdapter.Fill(dt);
                     conn.Close();
@@ -184,20 +243,34 @@ namespace AppMarketingAnalysis.Dao
                     {
                         category = row["category"].ToString(),
                         maximumInstalls = row["maximumInstalls"].ToString(),
-                        ratingcount = row["ratingcount"].ToString()
+                        ratingcount = row["ratingcount"].ToString(),
+                        price = row["price"].ToString()
                     });
                 }
             }
             else if (target == "Chart5")
             {
-                sql = @"SELECT category,RELEASED as Released 
-                        FROM AppMarketingAnalysisData as AMAD 
+                sql = @"SELECT TOP 1000 category,RELEASED as Released 
+                        FROM AppMarketingAnalysisData as AMAD
+                        WHERE ((PRICE >= @PRICE_1 AND PRICE <= @PRICE_2) OR (@PRICE_2 = 0))
+                          AND ( RELEASED >= @RELEASED_1 AND RELEASED<= @RELEASED_2)
                         ";
+                sql = ListParaToSql(sql, amad, "CATEGORY");
+                sql = ListParaToSql(sql, amad, "FREE");
+                sql = ListParaToSql(sql, amad, "INSTALLS_RANGE");
 
                 using (SqlConnection conn = new SqlConnection(this.GetDBConnectionString()))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(sql, conn);
+
+                    //APP價格
+                    cmd.Parameters.Add(new SqlParameter("@PRICE_1", amad.MIN_PRICE));
+                    cmd.Parameters.Add(new SqlParameter("@PRICE_2", amad.MAX_PRICE));
+                    //APP發行日期
+                    cmd.Parameters.Add(new SqlParameter("@RELEASED_1", amad.MIN_RELEASED));
+                    cmd.Parameters.Add(new SqlParameter("@RELEASED_2", amad.MAX_RELEASED));
+
                     //cmd.Parameters.Add(new SqlParameter("@APP_NAME", amad.APP_NAME == null ? string.Empty : amad.APP_NAME));
                     SqlDataAdapter sqlAdapter = new SqlDataAdapter(cmd);
                     sqlAdapter.Fill(dt);
@@ -208,21 +281,27 @@ namespace AppMarketingAnalysis.Dao
                     result.Add(new AppMarketingAnalysis.Model.StringResult()
                     {
                         category = row["category"].ToString(),
-                        rating = row["Released"].ToString()
+                        Released = row["Released"].ToString()
                     });
                 }
             }
             else if (target == "Chart6")
             {
-                sql = @"SELECT category, free, INSTALLS_COUNT as install 
+                sql = @"SELECT TOP 1000 category, free, INSTALLS_COUNT as install 
                         FROM AppMarketingAnalysisData as AMAD 
                         ";
+                sql = ListParaToSql(sql, amad, "CATEGORY");
+                sql = ListParaToSql(sql, amad, "INSTALLS_RANGE");
 
                 using (SqlConnection conn = new SqlConnection(this.GetDBConnectionString()))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(sql, conn);
-                    //cmd.Parameters.Add(new SqlParameter("@APP_NAME", amad.APP_NAME == null ? string.Empty : amad.APP_NAME));
+
+                    //APP價格
+                    cmd.Parameters.Add(new SqlParameter("@PRICE_1", amad.MIN_PRICE));
+                    cmd.Parameters.Add(new SqlParameter("@PRICE_2", amad.MAX_PRICE));
+
                     SqlDataAdapter sqlAdapter = new SqlDataAdapter(cmd);
                     sqlAdapter.Fill(dt);
                     conn.Close();
@@ -240,21 +319,67 @@ namespace AppMarketingAnalysis.Dao
             return result;
         }
 
-        /// Map資料進List (AppData)
-        /// <param name="AppDataTable"></param>
-        /// <returns></returns>
-        private List<AppMarketingAnalysis.Model.AppMarketingAnalysisData> MapAppDataToList(DataTable AppDataTable)
+        /// 處理sql參數的陣列
+        private string ListParaToSql(string sql, Model.AppMarketingAnalysisData amad, string target)
         {
-            List<AppMarketingAnalysis.Model.AppMarketingAnalysisData> result = new List<AppMarketingAnalysis.Model.AppMarketingAnalysisData>();
-            foreach (DataRow row in AppDataTable.Rows)
+            //分類
+            if (target == "CATEGORY")
             {
-                result.Add(new AppMarketingAnalysis.Model.AppMarketingAnalysisData()
+                if (amad.CATEGORY == null)
+                    return sql;
+                string SQLstart = @" AND UPPER(CATEGORY) IN (UPPER(' ";
+                string SQLend = @"')) ";
+                for(int i = 0; i < amad.CATEGORY.Length; i++)
                 {
-                    APP_NAME = row["APP_NAME"].ToString(),
-
-                });
+                    if (i != 0)
+                        SQLstart += @"'), UPPER('";
+                    SQLstart += amad.CATEGORY[i];
+                }
+                sql = sql + SQLstart + SQLend;
             }
-            return result;
+            //下載數量範圍
+            else if(target == "INSTALLS_RANGE")
+            {
+                if (amad.MAX_INSTALLS_RANGE == null || amad.MIN_INSTALLS_RANGE == null)
+                    return sql;
+                List<string> range = new List<string> {"0+","1+","10+","100+","1,000+","10,000+",
+                                                        "100,000+" ,"1,000,000+","10,000,000+",
+                                                        "100,000,000+","1,000,000,000+"};
+                int s = new int();
+                int e = new int();
+                for(int i = 0;i < range.Count; i++)
+                {
+                    if (amad.MIN_INSTALLS_RANGE == range[i])
+                        s = i;
+                    if (amad.MAX_INSTALLS_RANGE == range[i])
+                        e = i;
+                }
+                string SQLAdd = @" AND INSTALLS_RANGE IN ('";
+                for (int i = s ; i <= e; i++)
+                {
+                    if (i != 0)
+                        SQLAdd += @"','";
+                    SQLAdd += range[i];
+                }
+                SQLAdd += @"') ";
+                sql += SQLAdd;
+            }
+            //APP是免費還是付費
+            else if(target == "FREE")
+            {
+                if (amad.FREE == null)
+                    return sql;
+                string SQLAdd = @" AND FREE IN ('";
+                for (int i = 0; i < amad.FREE.Length; i++)
+                {
+                    if (i != 0)
+                        SQLAdd += @"', '";
+                    SQLAdd += amad.FREE[i];
+                }
+                SQLAdd += @"') ";
+                sql += SQLAdd;
+            }
+            return sql;
         }
 
         /// <summary>

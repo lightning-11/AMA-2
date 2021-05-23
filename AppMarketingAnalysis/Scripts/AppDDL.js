@@ -270,15 +270,15 @@
         $("#" + SD[sd_v]).kendoRangeSlider({
             min: 0,
             max: 5,
-            smallStep: 0.5,
-            largeStep: 0.5,
+            smallStep: 1,
+            largeStep: 1,
         }).data("kendoRangeSlider");
     }
 
     $("#NoRating").kendoCheckBoxGroup({
-        items: [{ label: "未評分", value: -1 }],
+        items: [{ label: "未評分", value: "true" }],
         layout: "horizontal",
         labelPosition: "after",
-        value: [-1]
+        value: ["true"]
     }).data("kendoCheckBoxGroup");
 });

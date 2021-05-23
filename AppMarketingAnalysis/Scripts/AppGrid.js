@@ -80,7 +80,7 @@ function GetAppGrid(searchResult) {
             }
         },
         pageSize: 20,
-        sort: { field: "APP_NAME", dir: "desc" }   //排序
+        sort: { field: "RATING_COUNT", dir: "desc" }   //排序
     });
     $("#AppGrid").data("kendoGrid").setDataSource(dataSource);
 

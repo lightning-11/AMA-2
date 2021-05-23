@@ -22,43 +22,43 @@ var SelectedOpt = ["AppName", "Category", "Rating",
 var TableList = [
     {
         Table: "AppGrid", TableName: "表格",
-        TableIntroduction: "aaa",
+        TableIntroduction: "<ul><li>秀出主要的APP欄位</li></ul>",
         SelectedOpt: ["AppName", "Category", "Rating",
             "RatingCount", "InstallsRange", "Free"]
     },
     {
-        Table: "Chart1", TableName: "圖表一",
-        TableIntroduction: "透過平均評分分數來來表示未來各類別app成功率的比較，幫助開發者找到較容易成功的類別<br>" +
-            "並透過顯示付費及免費app的平均評分分數，讓開發者思考免費及付費app可能帶來的成功率的差異<br>",
+        Table: "Chart1", TableName: "app類別的成功率",
+        TableIntroduction: "<ul><li>透過平均評分分數來來表示未來各類別app成功率的比較，幫助開發者找到較容易成功的類別</li>" +
+            "<li>並透過顯示付費及免費app的平均評分分數，讓開發者思考免費及付費app可能帶來的成功率的差異</li></ul>",
         SelectedOpt: ["Category", "RatingCount", "Price", "InstallsRange", "Free"]
     },
     {
-        Table: "Chart2", TableName: "圖表二",
-        TableIntroduction: "透過展現每一類別的評論數量，幫助開發者選擇較容易受到關注的類別，使開發完後的app能成為評論及更新互相正向影響的app<br>",
+        Table: "Chart2", TableName: "app類別的關注率及討論",
+        TableIntroduction: "<ul><li>透過展現每一類別的評論數量，幫助開發者選擇較容易受到關注的類別，使開發完後的app能成為評論及更新互相正向影響的app</li></ul>",
         SelectedOpt: ["Category", "RatingCount", "Price", "InstallsRange", "Free"]
     },
     {
-        Table: "Chart3", TableName: "圖表三",
-        TableIntroduction: "幫助開發者能夠了解各類別的競爭程度與競爭對手的數量<br>" +
-            "根據平均下載量可以看出哪些類別競爭程度較高，是否要進入競爭激烈的市場發展獨特的商品，還是進入進錚程度較低的市場，補足市場缺口，成為此市場中的佼佼者<br>" +
-            "而展現競爭對手的數量能讓開發者理解現有市場的競爭者，思考是否在未來的市場中能夠有一席之地<br>",
+        Table: "Chart3", TableName: "每一類別的競爭程度與競爭對手的數量",
+        TableIntroduction: "<ul><li>幫助開發者能夠了解各類別的競爭程度與競爭對手的數量</li>" +
+            "<li>根據平均下載量可以看出哪些類別競爭程度較高，是否要進入競爭激烈的市場發展獨特的商品，還是進入進錚程度較低的市場，補足市場缺口，成為此市場中的佼佼者</li>" +
+            "<li>而展現競爭對手的數量能讓開發者理解現有市場的競爭者，思考是否在未來的市場中能夠有一席之地</li></ul>",
         SelectedOpt: ["Category", "InstallsRange", "Price", "Free"]
     },
     {
-        Table: "Chart4", TableName: "圖表四",
-        TableIntroduction: "幫助APP開發者從營利取向角度來看哪些種類的APP討論熱度高且民眾付費使用意願高，較能賺錢<br>" +
-            "根據平均評分數量可以看出討論熱度，下載量可以看出民眾的接受度，加上付費APP的平均價格後可以得知APP大概要設定在多少價錢大家會接受，可以盈利<br>",
+        Table: "Chart4", TableName: "付費及免費app的討論熱度及民眾付費使用意願",
+        TableIntroduction: "<ul><li>幫助APP開發者從營利取向角度來看哪些種類的APP討論熱度高且民眾付費使用意願高，較能賺錢</li>" +
+            "<li>根據平均評分數量可以看出討論熱度，下載量可以看出民眾的接受度，加上付費APP的平均價格後可以得知APP大概要設定在多少價錢大家會接受，可以盈利</li></ul>",
         SelectedOpt: ["Category", "InstallsRange", "Price", "RatingCount"]
     },
     {
-        Table: "Chart5", TableName: "圖表五",
-        TableIntroduction: "幫助APP開發者得知競爭激烈程度，列出各類別每年分別有多少發行數量，除了了解同業競爭對手的數量，也可以了解各類別近年趨勢<br>" +
-            "在開發APP前可以思考一下此類型APP值不值得開發，評估是否有機會超越業界龍頭廠商<br>",
+        Table: "Chart5", TableName: "近年來各類別有多少競爭者",
+        TableIntroduction: "<ul><li>幫助APP開發者得知競爭激烈程度，列出各類別每年分別有多少發行數量，除了了解同業競爭對手的數量，也可以了解各類別近年趨勢</li>" +
+            "<li>在開發APP前可以思考一下此類型APP值不值得開發，評估是否有機會超越業界龍頭廠商</li></ul>",
         SelectedOpt: ["Category", "InstallsRange", "Free", "Price", "Released"]
     },
     {
-        Table: "Chart6", TableName: "圖表六",
-        TableIntroduction: "透過列出免費APP和付費APP的平均下載量，可讓開發者把較大商機的種類納為一個APP的開發考量因素<br>",
+        Table: "Chart6", TableName: "app商機的考量",
+        TableIntroduction: "<ul><li>透過列出免費APP和付費APP的平均下載量，可讓開發者把較大商機的種類納為一個APP的開發考量因素</li></ul>",
         SelectedOpt: ["Category", "InstallsRange","Price"]
     }
 ];
